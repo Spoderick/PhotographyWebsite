@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>CELESTIAL ARCHIVE | The Infinite Voyage</title>
+    <title>Spoderick | Portfolio Websites for Photographers</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
@@ -347,7 +347,7 @@
         }
 
         .cursor-active .trail {
-            opacity: 0;
+            opacity: 0.35;
         }
 
         .nav-link {
@@ -719,6 +719,335 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
             transform: scale(1.3);
         }
+
+        /* Observation V: The Quantum Drift */
+        .quantum-drift-section {
+            position: relative;
+            z-index: 5;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.14), transparent 32%),
+                radial-gradient(circle at 82% 24%, rgba(244, 114, 182, 0.10), transparent 28%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.32), rgba(2, 6, 23, 0.82));
+        }
+
+        .quantum-drift-section::before {
+            content: "";
+            position: absolute;
+            inset: 8% 5% auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .drift-layout {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .drift-note {
+            position: relative;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(18px);
+            overflow: hidden;
+        }
+
+        .drift-note::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent 45%);
+            pointer-events: none;
+        }
+
+        .drift-note-label {
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 9px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.85);
+        }
+
+        .drift-note p {
+            position: relative;
+            max-width: 28rem;
+            color: rgba(226, 232, 240, 0.82);
+            line-height: 1.8;
+        }
+
+        .drift-collage {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .drift-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(15, 23, 42, 0.38);
+            backdrop-filter: blur(14px);
+            min-height: 280px;
+            isolation: isolate;
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+            animation: driftFloat 10s ease-in-out infinite;
+        }
+
+        .drift-card:nth-child(2n) {
+            animation-duration: 12s;
+        }
+
+        .drift-card:nth-child(3n) {
+            animation-duration: 14s;
+        }
+
+        .drift-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 35%, rgba(2, 6, 23, 0.85) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .drift-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: inset 0 0 60px rgba(56, 189, 248, 0.03);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .drift-card:hover {
+            transform: translateY(-10px) rotate(-0.8deg);
+            border-color: rgba(56, 189, 248, 0.28);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .drift-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.92) brightness(0.78);
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+        }
+
+        .drift-card:hover img {
+            transform: scale(1.06);
+            filter: saturate(1.05) brightness(0.92);
+        }
+
+        .drift-card-content {
+            position: absolute;
+            inset: auto 0 0 0;
+            z-index: 2;
+            padding: 1.25rem;
+        }
+
+        .drift-card-meta {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.95);
+        }
+
+        .drift-card-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.5rem, 3vw, 2.6rem);
+            line-height: 1.05;
+            color: #fff;
+            max-width: 12ch;
+        }
+
+        .drift-card-specs {
+            display: block;
+            margin-top: 0.9rem;
+            font-size: 9px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.95);
+        }
+
+        .drift-card--hero {
+            min-height: 520px;
+        }
+
+        .drift-card--wide {
+            min-height: 360px;
+        }
+
+        .drift-card--tall {
+            min-height: 440px;
+        }
+
+        .drift-card--quote {
+            display: flex;
+            align-items: flex-end;
+            min-height: 320px;
+            padding: 1.5rem;
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 35%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.95));
+            animation: none;
+        }
+
+        .drift-card--quote::before,
+        .drift-card--quote::after {
+            display: none;
+        }
+
+        .drift-quote {
+            position: relative;
+            z-index: 2;
+            max-width: 24rem;
+        }
+
+        .drift-quote p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            line-height: 1.15;
+            color: #fff;
+        }
+
+        .drift-quote span {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 9px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.8);
+        }
+
+        .drift-strip {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .drift-strip-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(15, 23, 42, 0.42);
+        }
+
+        .drift-strip-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.78);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.6s ease;
+        }
+
+        .drift-strip-frame:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.92);
+        }
+
+        @keyframes driftFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (min-width: 768px) {
+            .drift-layout {
+                gap: 1.5rem;
+            }
+
+            .drift-collage {
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+                grid-auto-rows: minmax(90px, auto);
+                gap: 1.25rem;
+            }
+
+            .drift-note {
+                padding: 2rem;
+            }
+
+            .drift-card--hero {
+                grid-column: 1 / 8;
+                grid-row: 1 / span 5;
+            }
+
+            .drift-card--wide {
+                grid-column: 8 / 13;
+                grid-row: 1 / span 3;
+            }
+
+            .drift-card--quote {
+                grid-column: 8 / 13;
+                grid-row: 4 / span 2;
+            }
+
+            .drift-card--tall {
+                grid-column: 1 / 5;
+                grid-row: 6 / span 4;
+                margin-top: -3.5rem;
+            }
+
+            .drift-card--stack-a {
+                grid-column: 5 / 9;
+                grid-row: 6 / span 2;
+            }
+
+            .drift-card--stack-b {
+                grid-column: 9 / 13;
+                grid-row: 6 / span 4;
+                margin-top: 2.5rem;
+            }
+
+            .drift-strip {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(14px);
+        }
+
+        .lang-toggle-btn {
+            border: 0;
+            background: transparent;
+            color: rgba(255,255,255,0.55);
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            padding: 0.5rem 0.75rem;
+            border-radius: 999px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .lang-toggle-btn.active {
+            background: rgba(56, 189, 248, 0.16);
+            color: #ffffff;
+        }
+
+        .mobile-lang-wrap {
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface">
@@ -739,15 +1068,19 @@
     <!-- Persistent Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-background/20 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-4 sm:px-6 lg:px-12 h-16 md:h-20 translate-y-[-100%]" id="navbar">
         <div class="flex items-center gap-4">
-            <a href="#hero" class="text-sm md:text-lg font-light tracking-[0.3em] md:tracking-[0.5em] text-white uppercase font-display">CELESTIAL</a>
+            <a href="#hero" class="text-sm md:text-lg font-light tracking-[0.3em] md:tracking-[0.5em] text-white uppercase font-display" data-i18n="brand_name">Spoderick</a>
         </div>
         <div class="hidden md:flex gap-12 items-center">
-            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#portfolio">Constellations</a>
-            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#narrative">Deep Space</a>
-            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#archive">Archive</a>
-            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#contact">Contact</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#portfolio" data-i18n="nav_featured">Featured Work</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#narrative" data-i18n="nav_storytelling">Storytelling</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#archive" data-i18n="nav_gallery">Gallery Modes</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#contact" data-i18n="nav_contact">Contact</a>
         </div>
         <div class="flex items-center gap-4">
+            <div class="lang-toggle hidden md:inline-flex" aria-label="Language switcher">
+                <button class="lang-toggle-btn active" id="lang-en" type="button">EN</button>
+                <button class="lang-toggle-btn" id="lang-es" type="button">ES</button>
+            </div>
             <button class="mobile-menu-btn material-symbols-outlined text-white" id="mobile-menu-btn" aria-label="Menu">menu</button>
             <span class="material-symbols-outlined text-white hidden md:block cursor-pointer hover:text-accent transition-colors">star</span>
         </div>
@@ -756,10 +1089,16 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu">
         <button class="absolute top-5 right-4 mobile-menu-btn material-symbols-outlined text-white" id="mobile-menu-close" aria-label="Close">close</button>
-        <a href="#portfolio" class="mobile-nav-link">Constellations</a>
-        <a href="#narrative" class="mobile-nav-link">Deep Space</a>
-        <a href="#archive" class="mobile-nav-link">Archive</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <a href="#portfolio" class="mobile-nav-link" data-i18n="nav_featured">Featured Work</a>
+        <a href="#narrative" class="mobile-nav-link" data-i18n="nav_storytelling">Storytelling</a>
+        <a href="#archive" class="mobile-nav-link" data-i18n="nav_gallery">Gallery Modes</a>
+        <a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a>
+        <div class="mobile-lang-wrap">
+            <div class="lang-toggle" aria-label="Language switcher mobile">
+                <button class="lang-toggle-btn active" id="lang-en-mobile" type="button">EN</button>
+                <button class="lang-toggle-btn" id="lang-es-mobile" type="button">ES</button>
+            </div>
+        </div>
     </div>
 
     <main class="w-full relative z-10">
@@ -769,10 +1108,10 @@
                 <img class="w-full h-full object-cover opacity-40 grayscale" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=2070"/>
             </div>
             <div class="relative z-10 text-center px-gutter" style="margin:0 auto;max-width:1440px;width:100%">
-                <span class="inline-block font-body text-[10px] tracking-[0.8em] uppercase text-accent mb-4 md:mb-8 opacity-0" id="hero-tag">Entering the Void</span>
-                <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white mb-6 md:mb-stack-lg italic reveal-text leading-tight px-2" id="hero-title">Beyond the Edge.</h1>
-                <p class="font-body text-base md:text-lg text-secondary max-w-xl md:max-w-2xl mx-auto opacity-0 translate-y-8 px-4" id="hero-subtitle">
-                    A cinematic journey through the light of distant suns. Scroll to descend into the deep.
+                <span class="inline-block font-body text-[10px] tracking-[0.8em] uppercase text-accent mb-4 md:mb-8 opacity-0" id="hero-tag" data-i18n="hero_tag">Custom Portfolio Websites for Photographers</span>
+                <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white mb-6 md:mb-stack-lg italic reveal-text leading-tight px-2" id="hero-title" data-i18n="hero_title">Make the work feel unforgettable.</h1>
+                <p class="font-body text-base md:text-lg text-secondary max-w-xl md:max-w-2xl mx-auto opacity-0 translate-y-8 px-4" id="hero-subtitle" data-i18n="hero_subtitle">
+                    I'm Spoderick, and I design cinematic, high-converting portfolio websites that help photographers present their images beautifully, stand out, and turn visits into inquiries.
                 </p>
             </div>
             <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
@@ -785,10 +1124,10 @@
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
                 <header class="mb-16 md:mb-32 flex flex-col items-center text-center gap-6 md:gap-8">
                     <div class="max-w-3xl">
-                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation I</span>
-                        <h2 class="font-display text-6xl md:text-8xl text-white italic scroll-reveal">The Constellations.</h2>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal" data-i18n="section1_label">Section I</span>
+                        <h2 class="font-display text-6xl md:text-8xl text-white italic scroll-reveal" data-i18n="section1_title">Featured Work.</h2>
                     </div>
-                    <p class="text-secondary text-lg max-w-xl scroll-reveal">Systematic studies of Quadrants Alpha through Delta. Capturing the geometric truth of the night sky.</p>
+                    <p class="text-secondary text-lg max-w-xl scroll-reveal" data-i18n="section1_desc">A premium homepage gallery that gives hero images room to breathe, guides the eye, and immediately tells a client this photographer takes presentation seriously.</p>
                 </header>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-40">
@@ -797,8 +1136,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1532978341174-6228f0cb5347?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/ursa01/1200/825'"/>
                         </div>
                         <div class="flex justify-between items-end">
-                            <h3 class="font-display text-3xl text-white italic">Ursa Minor</h3>
-                            <span class="text-[9px] text-white/30 tracking-widest uppercase">EXP 01 // 2023</span>
+                            <h3 class="font-display text-3xl text-white italic" data-i18n="feature_card_1_title">Editorial Portraits</h3>
+                            <span class="text-[9px] text-white/30 tracking-widest uppercase" data-i18n="feature_card_1_meta">Hero Layout // 2026</span>
                         </div>
                     </div>
 
@@ -807,8 +1146,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=2071"/>
                         </div>
                         <div class="flex justify-between items-end">
-                            <h3 class="font-display text-3xl text-white italic">Cassiopeia</h3>
-                            <span class="text-[9px] text-white/30 tracking-widest uppercase">EXP 04 // 2023</span>
+                            <h3 class="font-display text-3xl text-white italic" data-i18n="feature_card_2_title">Travel Narratives</h3>
+                            <span class="text-[9px] text-white/30 tracking-widest uppercase" data-i18n="feature_card_2_meta">Split Composition // 2026</span>
                         </div>
                     </div>
                 </div>
@@ -819,8 +1158,8 @@
         <section id="narrative" class="bg-surface/10 backdrop-blur-3xl overflow-hidden">
             <div class="w-full">
                 <div class="px-4 sm:px-6 lg:px-12 xl:px-20 mb-12 md:mb-20 max-w-[1440px] mx-auto">
-                    <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] block mb-4 scroll-reveal">Observation II</span>
-                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-white italic scroll-reveal">Deep Space Chronicles.</h2>
+                    <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] block mb-4 scroll-reveal" data-i18n="section2_label">Section II</span>
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-white italic scroll-reveal" data-i18n="section2_title">Storytelling Projects.</h2>
                 </div>
 
                 <div class="flex gap-8 md:gap-20 px-4 sm:px-6 lg:px-12 xl:px-20" id="timeline-container">
@@ -829,8 +1168,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron01/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">The Orion Cradle</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">1,344 LY</span>
+                            <h3 class="font-display text-4xl text-white italic" data-i18n="story_card_1_title">A full wedding weekend</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]" data-i18n="story_card_1_meta">Project Page</span>
                         </div>
                     </div>
 
@@ -839,8 +1178,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron02/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">Andromeda's Reach</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">2.5M LY</span>
+                            <h3 class="font-display text-4xl text-white italic" data-i18n="story_card_2_title">A fashion editorial story</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]" data-i18n="story_card_2_meta">Lookbook Flow</span>
                         </div>
                     </div>
 
@@ -849,8 +1188,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron03/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">Void Horizon</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">4.2B LY</span>
+                            <h3 class="font-display text-4xl text-white italic" data-i18n="story_card_3_title">A destination travel series</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]" data-i18n="story_card_3_meta">Immersive Sequence</span>
                         </div>
                     </div>
 
@@ -859,8 +1198,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1454789548728-85d2696cfbaf?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron04/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">Solar Storms</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">0.00016 LY</span>
+                            <h3 class="font-display text-4xl text-white italic">A branded lifestyle campaign</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">Campaign Story</span>
                         </div>
                     </div>
 
@@ -869,8 +1208,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron05/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">ISS Transit</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">254 MI</span>
+                            <h3 class="font-display text-4xl text-white italic">A commercial product shoot</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">Client Case Study</span>
                         </div>
                     </div>
 
@@ -879,8 +1218,8 @@
                             <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1419242902214-272b3f49ee23?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron06/1200/675'"/>
                         </div>
                         <div class="flex justify-between items-start">
-                            <h3 class="font-display text-4xl text-white italic">Star Trails</h3>
-                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">8 HR EXP</span>
+                            <h3 class="font-display text-4xl text-white italic">A documentary photo essay</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">Long-form Narrative</span>
                         </div>
                     </div>
                 </div>
@@ -892,118 +1231,118 @@
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
                 <header class="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                     <div>
-                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation III</span>
-                        <h2 class="font-display text-6xl text-white italic scroll-reveal">The Archive.</h2>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal" data-i18n="section3_label">Section III</span>
+                        <h2 class="font-display text-6xl text-white italic scroll-reveal" data-i18n="section3_title">Gallery Modes.</h2>
                     </div>
-                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal">Technical Index</div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal" data-i18n="section3_meta">Designed to Fit Your Work</div>
                 </header>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space01/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Deep Field</span>
-                            <h3 class="archive-title">Stellar Nursery</h3>
-                            <span class="archive-specs">f/2.8 · ISO 3200 · 14mm</span>
+                            <span class="archive-meta">Gallery Mode</span>
+                            <h3 class="archive-title">Minimal Grid</h3>
+                            <span class="archive-specs">Clean browsing · strong thumbnails</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space02/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Milky Way</span>
-                            <h3 class="archive-title">Galactic Core</h3>
-                            <span class="archive-specs">f/1.4 · ISO 6400 · 24mm</span>
+                            <span class="archive-meta">Gallery Mode</span>
+                            <h3 class="archive-title">Luxury Editorial</h3>
+                            <span class="archive-specs">Large imagery · premium spacing</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space03/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Long Exposure</span>
-                            <h3 class="archive-title">Void Observation</h3>
-                            <span class="archive-specs">f/4 · ISO 800 · 50mm</span>
+                            <span class="archive-meta">Gallery Mode</span>
+                            <h3 class="archive-title">Story-led Series</h3>
+                            <span class="archive-specs">Captions · sequence · mood</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space04/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Spectral</span>
-                            <h3 class="archive-title">Nebula Front</h3>
-                            <span class="archive-specs">f/2.8 · ISO 1600 · 85mm</span>
+                            <span class="archive-meta">Client Need</span>
+                            <h3 class="archive-title">Mobile Ready</h3>
+                            <span class="archive-specs">Fast loading · vertical-friendly</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space05/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">ISS Transit</span>
-                            <h3 class="archive-title">Orbital Path</h3>
-                            <span class="archive-specs">f/8 · ISO 200 · 600mm</span>
+                            <span class="archive-meta">Client Need</span>
+                            <h3 class="archive-title">Inquiry Driven</h3>
+                            <span class="archive-specs">Clear CTA · frictionless contact</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space06/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Earthrise</span>
-                            <h3 class="archive-title">Pale Blue Dot</h3>
-                            <span class="archive-specs">f/5.6 · ISO 400 · 35mm</span>
+                            <span class="archive-meta">Client Need</span>
+                            <h3 class="archive-title">Brand Consistency</h3>
+                            <span class="archive-specs">Fonts · tones · visual voice</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1419242902214-272b3f49ee23?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space07/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Andromeda</span>
-                            <h3 class="archive-title">Spiral Dynamics</h3>
-                            <span class="archive-specs">f/2.8 · ISO 3200 · 200mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">Full-screen Lightbox</h3>
+                            <span class="archive-specs">Immersive detail viewing</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space08/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Starfield</span>
-                            <h3 class="archive-title">Ancient Light</h3>
-                            <span class="archive-specs">f/1.8 · ISO 6400 · 20mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">Project Covers</h3>
+                            <span class="archive-specs">Category pages that feel bespoke</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8bcbf7d943d?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space09/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Ionosphere</span>
-                            <h3 class="archive-title">Aurora Borealis</h3>
-                            <span class="archive-specs">f/2.8 · ISO 1600 · 14mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">Animated Transitions</h3>
+                            <span class="archive-specs">Motion that supports the imagery</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1543722530-1a2c857ca1d7?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space10/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Apollo</span>
-                            <h3 class="archive-title">Lunar Highlands</h3>
-                            <span class="archive-specs">f/11 · ISO 100 · 100mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">Client Trust Signals</h3>
+                            <span class="archive-specs">Testimonials · logos · press</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space11/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Spacewalk</span>
-                            <h3 class="archive-title">EVA Sequence</h3>
-                            <span class="archive-specs">f/4 · ISO 800 · 70mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">SEO Foundations</h3>
+                            <span class="archive-specs">Structured pages · discoverability</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
                     <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1454789548728-85d2696cfbaf?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space12/800/800'"/>
                         <div class="archive-overlay">
-                            <span class="archive-meta">Infrared</span>
-                            <h3 class="archive-title">Cosmic Dust</h3>
-                            <span class="archive-specs">f/2.8 · ISO 12800 · 300mm</span>
+                            <span class="archive-meta">Feature</span>
+                            <h3 class="archive-title">Booking-ready Contact</h3>
+                            <span class="archive-specs">Simple forms · stronger conversion</span>
                         </div>
                         <div class="archive-accent-line"></div>
                     </div>
@@ -1016,10 +1355,10 @@
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
                 <header class="mb-10 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                     <div>
-                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation IV</span>
-                        <h2 class="font-display text-6xl text-white italic scroll-reveal">Orbital Gallery.</h2>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal" data-i18n="section4_label">Section IV</span>
+                        <h2 class="font-display text-6xl text-white italic scroll-reveal" data-i18n="section4_title">Interactive Showcase.</h2>
                     </div>
-                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal">3D Index</div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal" data-i18n="section4_meta">Premium Motion</div>
                 </header>
             </div>
             <div class="carousel-3d-container" id="carousel-3d">
@@ -1028,27 +1367,27 @@
                         <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d01/640/840'" style="opacity:0;transition:opacity 1s"/>
                         <div class="card-3d-glow"></div>
                         <div class="card-3d-overlay">
-                            <span class="card-3d-meta">Nebula</span>
-                            <h3 class="card-3d-title">Cosmic Cradle</h3>
-                            <span class="card-3d-specs">f/2.8 · ISO 3200 · 14mm</span>
+                            <span class="card-3d-meta">Interactive View</span>
+                            <h3 class="card-3d-title">Cinematic Carousel</h3>
+                            <span class="card-3d-specs">For featured images and hero projects</span>
                         </div>
                     </div>
                     <div class="carousel-3d-card" data-index="1">
                         <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d02/640/840'" style="opacity:0;transition:opacity 1s"/>
                         <div class="card-3d-glow"></div>
                         <div class="card-3d-overlay">
-                            <span class="card-3d-meta">Deep Field</span>
-                            <h3 class="card-3d-title">Andromeda's Edge</h3>
-                            <span class="card-3d-specs">f/1.4 · ISO 6400 · 24mm</span>
+                            <span class="card-3d-meta">Interactive View</span>
+                            <h3 class="card-3d-title">Portfolio Preview</h3>
+                            <span class="card-3d-specs">Show multiple series without clutter</span>
                         </div>
                     </div>
                     <div class="carousel-3d-card" data-index="2">
                         <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d03/640/840'" style="opacity:0;transition:opacity 1s"/>
                         <div class="card-3d-glow"></div>
                         <div class="card-3d-overlay">
-                            <span class="card-3d-meta">Transit</span>
-                            <h3 class="card-3d-title">Orbital Pass</h3>
-                            <span class="card-3d-specs">f/8 · ISO 200 · 600mm</span>
+                            <span class="card-3d-meta">Interactive View</span>
+                            <h3 class="card-3d-title">Project Teaser</h3>
+                            <span class="card-3d-specs">Adds motion without losing elegance</span>
                         </div>
                     </div>
                     <div class="carousel-3d-card" data-index="3">
@@ -1121,32 +1460,121 @@
             </div>
         </section>
 
+        <!-- OBSERVATION V: THE QUANTUM DRIFT -->
+        <section id="observation-v" class="quantum-drift-section overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <header class="mb-10 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal" data-i18n="section5_label">Section V</span>
+                        <h2 class="font-display text-5xl md:text-6xl text-white italic scroll-reveal" data-i18n="section5_title">Editorial Layout System.</h2>
+                    </div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal" data-i18n="section5_meta">Art Direction in Code</div>
+                </header>
+
+                <div class="drift-layout">
+                    <div class="drift-note scroll-reveal">
+                        <span class="drift-note-label" data-i18n="section5_note_label">Why It Works</span>
+                        <p data-i18n="section5_note_body">
+                            This section shows how a custom site can feel editorial, cinematic, and intentionally arranged.
+                            The photography stays central while the layout adds personality, hierarchy, and a premium impression.
+                        </p>
+                    </div>
+
+                    <div class="drift-collage">
+                        <article class="drift-card drift-card--hero scroll-reveal">
+                            <img src="Photos Portafolio/pexels-wolfgang-weiser-467045605-29491832.jpg" alt="Pulse Star" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="drift-card-content">
+                                <span class="drift-card-meta">Pulsar / Anchor Frame</span>
+                                <h3 class="drift-card-title">Pulse Star</h3>
+                                <span class="drift-card-specs">f/4.0 · ISO 1600 · 85mm</span>
+                            </div>
+                        </article>
+
+                        <article class="drift-card drift-card--wide scroll-reveal">
+                            <img src="Photos Portafolio/pexels-pixabay-355887.jpg" alt="Galactic Core" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="drift-card-content">
+                                <span class="drift-card-meta">Supermassive / Wide Drift</span>
+                                <h3 class="drift-card-title">Galactic Core</h3>
+                                <span class="drift-card-specs">f/2.8 · ISO 1600 · 24mm</span>
+                            </div>
+                        </article>
+
+                        <article class="drift-card drift-card--quote scroll-reveal">
+                            <div class="drift-quote">
+                                <p data-i18n="section5_quote">“The best portfolio sites do not just display images. They frame taste.”</p>
+                                <span data-i18n="section5_quote_label">Design Principle</span>
+                            </div>
+                        </article>
+
+                        <article class="drift-card drift-card--tall scroll-reveal">
+                            <img src="Photos Portafolio/pexels-brett-sayles-3691531.jpg" alt="Event Horizon" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="drift-card-content">
+                                <span class="drift-card-meta">Singularity / Vertical Study</span>
+                                <h3 class="drift-card-title">Event Horizon</h3>
+                                <span class="drift-card-specs">f/1.4 · ISO 12800 · 50mm</span>
+                            </div>
+                        </article>
+
+                        <article class="drift-card drift-card--stack-a scroll-reveal">
+                            <img src="Photos Portafolio/pexels-emir-anik-45418356-10919408.jpg" alt="Nebula Dust" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="drift-card-content">
+                                <span class="drift-card-meta">Interstellar / Fragment</span>
+                                <h3 class="drift-card-title">Nebula Dust</h3>
+                                <span class="drift-card-specs">f/4.0 · ISO 3200 · 35mm</span>
+                            </div>
+                        </article>
+
+                        <article class="drift-card drift-card--stack-b scroll-reveal">
+                            <img src="Photos Portafolio/pexels-thilina-alagiyawanna-3266092-36833550.jpg" alt="Cosmic Ray" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="drift-card-content">
+                                <span class="drift-card-meta">High Energy / Late Exposure</span>
+                                <h3 class="drift-card-title">Cosmic Ray</h3>
+                                <span class="drift-card-specs">f/2.8 · ISO 25600 · 70mm</span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="drift-strip scroll-reveal">
+                        <div class="drift-strip-frame">
+                            <img src="Photos Portafolio/pexels-blitzboy-958362.jpg" alt="Solar Flare" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                        </div>
+                        <div class="drift-strip-frame">
+                            <img src="Photos Portafolio/pexels-minan1398-813269.jpg" alt="Void Echo" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                        </div>
+                        <div class="drift-strip-frame">
+                            <img src="Photos Portafolio/pexels-roy-yang-135943799-18709679.jpg" alt="Stellar Wind" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACT -->
         <section id="contact">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
                 <div class="grid grid-cols-1 contact-grid items-center w-full">
                     <div class="w-full">
-                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-6 md:mb-8 block scroll-reveal">Connection</span>
-                        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8cqw,6rem)] text-white mb-8 md:mb-10 italic scroll-reveal leading-none">Join the expedition.</h2>
-                        <p class="font-body text-lg text-secondary mb-12 scroll-reveal max-w-md">Documenting the infinite requires many eyes. Send a signal to begin a collaboration.</p>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-6 md:mb-8 block scroll-reveal" data-i18n="contact_label">Let's Build Yours</span>
+                        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8cqw,6rem)] text-white mb-8 md:mb-10 italic scroll-reveal leading-none" data-i18n="contact_title">Book a photographer portfolio.</h2>
+                        <p class="font-body text-lg text-secondary mb-12 scroll-reveal max-w-md" data-i18n="contact_desc">Custom websites for photographers who want a stronger brand, better presentation, faster mobile performance, and more inquiries from the right clients.</p>
                     </div>
                     <form class="flex flex-col gap-10 bg-surface/20 p-8 md:p-16 backdrop-blur-3xl border border-white/5 rounded-sm scroll-reveal w-full" id="contact-form">
                         <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Callsign</label>
-                            <input required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="NAME / IDENTIFIER" type="text"/>
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_name_label">Name</label>
+                            <input id="contact-name" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="YOUR NAME" type="text" data-i18n-placeholder="form_name_placeholder"/>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Frequency</label>
-                            <input required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="EMAIL ADDRESS" type="email"/>
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_email_label">Email</label>
+                            <input id="contact-email" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="EMAIL ADDRESS" type="email" data-i18n-placeholder="form_email_placeholder"/>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Transmission</label>
-                            <textarea required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 resize-none uppercase" placeholder="MESSAGE DATA" rows="4"></textarea>
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_project_label">Project Type</label>
+                            <textarea id="contact-project" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 resize-none uppercase" placeholder="WEDDINGS, FASHION, TRAVEL, PORTRAITS, OR COMMERCIAL" rows="4" data-i18n-placeholder="form_project_placeholder"></textarea>
                         </div>
-                        <button class="w-full py-6 bg-white text-background text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-accent hover:text-white transition-all duration-500 magnetic active:scale-95" type="submit">
-                            Initiate Launch
+                        <button class="w-full py-6 bg-white text-background text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-accent hover:text-white transition-all duration-500 magnetic active:scale-95" type="submit" id="contact-submit" data-i18n="form_submit">
+                            Request My Portfolio
                         </button>
-                        <p id="form-status" class="text-[9px] tracking-[0.4em] text-accent text-center hidden">Transmission Received. Stand by.</p>
+                        <p id="form-status" class="text-[9px] tracking-[0.4em] text-accent text-center hidden" data-i18n="form_status">Inquiry received. I'll be in touch soon.</p>
                     </form>
                 </div>
             </div>
@@ -1155,9 +1583,9 @@
 
     <footer class="bg-deep-void border-t border-white/5 py-20 relative z-10">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
-            <div class="text-[9px] tracking-[0.5em] text-white/30 uppercase">© 2024 CELESTIAL ARCHIVE // DATA LOGGED</div>
+            <div class="text-[9px] tracking-[0.5em] text-white/30 uppercase" data-i18n="footer_brand">© 2024 SPODERICK // PORTFOLIO DEMO</div>
             <div class="flex gap-12">
-                <a href="#hero" class="text-[9px] tracking-widest uppercase text-white/40 hover:text-white transition-colors magnetic">Return to Threshold</a>
+                <a href="#hero" class="text-[9px] tracking-widest uppercase text-white/40 hover:text-white transition-colors magnetic" data-i18n="footer_top">Back to Top</a>
             </div>
             <div class="flex gap-8">
                 <span class="material-symbols-outlined text-white/20 hover:text-accent transition-colors magnetic">public</span>
@@ -1172,11 +1600,23 @@
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
 
     <script>
+        // --- Performance Profile ---
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const lowPowerDevice = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+            (navigator.deviceMemory && navigator.deviceMemory <= 4);
+        const enableHeavyEffects = !isTouchDevice && !prefersReducedMotion;
+        const enableCustomCursor = !isTouchDevice;
+
         // --- 1. Immersive Deep Space Engine ---
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
         let stars = [];
         let speedMultiplier = 1;
+        let starsAnimationId = null;
+        let lastStarsFrame = 0;
+        const starsFps = enableHeavyEffects ? 45 : 24;
+        const starsFrameInterval = 1000 / starsFps;
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -1206,13 +1646,25 @@
 
         function initStars() {
             stars = [];
-            for (let i = 0; i < 300; i++) stars.push(new Star());
+            const starCount = enableHeavyEffects ? 140 : 60;
+            for (let i = 0; i < starCount; i++) stars.push(new Star());
         }
 
-        function animateStars() {
+        function animateStars(timestamp = 0) {
+            if (document.hidden) {
+                starsAnimationId = requestAnimationFrame(animateStars);
+                return;
+            }
+
+            if (timestamp - lastStarsFrame < starsFrameInterval) {
+                starsAnimationId = requestAnimationFrame(animateStars);
+                return;
+            }
+
+            lastStarsFrame = timestamp;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             stars.forEach(star => { star.update(); star.draw(); });
-            requestAnimationFrame(animateStars);
+            starsAnimationId = requestAnimationFrame(animateStars);
         }
 
         window.addEventListener('resize', resize);
@@ -1221,9 +1673,17 @@
         animateStars();
 
         // --- 2. Smooth Scroll & Anchor Fix ---
-        const lenis = new Lenis({ duration: 1.5 });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+        const lenis = new Lenis({
+            duration: 1.1,
+            lerp: 0.085,
+            smoothWheel: true,
+            syncTouch: false
+        });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1231,69 +1691,90 @@
                 const targetId = this.getAttribute('href');
                 lenis.scrollTo(targetId, {
                     offset: -80,
-                    duration: 1.5,
+                    duration: 1.05,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 });
             });
         });
 
         // --- 3. Shooting Star Cursor Engine ---
-        const cursorHead = document.getElementById('cursor');
-        const wrapper = document.getElementById('cursor-wrapper');
-        const trailCount = 8;
-        const trails = [];
+        if (enableCustomCursor) {
+            const cursorHead = document.getElementById('cursor');
+            const wrapper = document.getElementById('cursor-wrapper');
+            const trailCount = 8;
+            const trails = [];
 
-        // Inyectar partes de la cola
-        for (let i = 0; i < trailCount; i++) {
-            const div = document.createElement('div');
-            div.className = 'cursor-part trail';
-            wrapper.appendChild(div);
-            trails.push({
-                el: div,
-                x: gsap.quickTo(div, "x", { duration: 0.1 + (i * 0.04), ease: "power2.out" }),
-                y: gsap.quickTo(div, "y", { duration: 0.1 + (i * 0.04), ease: "power2.out" })
+            document.body.style.cursor = 'none';
+            wrapper.style.display = 'block';
+            document.querySelectorAll('a, button, input, textarea, .magnetic, .group').forEach((el) => {
+                el.style.cursor = 'none';
             });
+
+            for (let i = 0; i < trailCount; i++) {
+                const div = document.createElement('div');
+                div.className = 'cursor-part trail';
+                wrapper.appendChild(div);
+                trails.push({
+                    el: div,
+                    x: gsap.quickTo(div, "x", { duration: 0.1 + (i * 0.04), ease: "power2.out" }),
+                    y: gsap.quickTo(div, "y", { duration: 0.1 + (i * 0.04), ease: "power2.out" })
+                });
+            }
+
+            const headX = gsap.quickTo(cursorHead, "x", { duration: 0.02, ease: "none" });
+            const headY = gsap.quickTo(cursorHead, "y", { duration: 0.02, ease: "none" });
+
+            window.addEventListener('mousemove', (e) => {
+                const { clientX: x, clientY: y } = e;
+                headX(x);
+                headY(y);
+                trails.forEach((t, i) => {
+                    t.x(x);
+                    t.y(y);
+                    gsap.set(t.el, { scale: 1 - (i / trailCount) });
+                });
+            }, { passive: true });
+
+            document.querySelectorAll('a, button, input, textarea, .magnetic').forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+            });
+        } else {
+            document.body.style.cursor = 'auto';
+            document.querySelectorAll('a, button, input, textarea, .magnetic, .group').forEach((el) => {
+                el.style.cursor = 'pointer';
+            });
+            const cursorWrapper = document.getElementById('cursor-wrapper');
+            if (cursorWrapper) cursorWrapper.style.display = 'none';
         }
-
-        // Movimiento ultra-rápido de la cabeza (el sol)
-        const headX = gsap.quickTo(cursorHead, "x", { duration: 0.02, ease: "none" });
-        const headY = gsap.quickTo(cursorHead, "y", { duration: 0.02, ease: "none" });
-
-        window.addEventListener('mousemove', (e) => {
-            const { clientX: x, clientY: y } = e;
-            headX(x);
-            headY(y);
-            trails.forEach((t, i) => {
-                t.x(x);
-                t.y(y);
-                gsap.set(t.el, { scale: 1 - (i / trailCount) });
-            });
-        });
-
-        document.querySelectorAll('a, button, .magnetic, .group').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
-        });
 
         // --- 4. Deep Space Progression ---
         gsap.registerPlugin(ScrollTrigger);
+        const nebula1Opacity = gsap.quickTo("#nebula-1", "opacity", { duration: 0.6, ease: "power1.out" });
+        const nebula2Opacity = gsap.quickTo("#nebula-2", "opacity", { duration: 0.6, ease: "power1.out" });
+        const planet1X = gsap.quickTo("#planet-1", "x", { duration: 0.8, ease: "power1.out" });
+        const planet1Opacity = gsap.quickTo("#planet-1", "opacity", { duration: 0.8, ease: "power1.out" });
+        const planet2X = gsap.quickTo("#planet-2", "x", { duration: 0.8, ease: "power1.out" });
+        const planet2Opacity = gsap.quickTo("#planet-2", "opacity", { duration: 0.8, ease: "power1.out" });
 
         ScrollTrigger.create({
             trigger: "body",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1.5,
+            scrub: 0.8,
             onUpdate: (self) => {
                 const p = self.progress;
-                speedMultiplier = 1 + p * 35;
+                speedMultiplier = 1 + p * (enableHeavyEffects ? 18 : 8);
                 const voidIntensity = Math.max(0, 1 - p * 1.5);
                 gsap.set("#space-container", {
                     background: p > 0.8 ? "#000" : `radial-gradient(circle at center, rgba(15, 23, 42, ${voidIntensity}) 0%, #000 100%)`
                 });
-                if (p > 0.2) gsap.to("#nebula-1", { opacity: (p - 0.2) * 0.8, duration: 2 });
-                if (p > 0.5) gsap.to("#nebula-2", { opacity: (p - 0.5) * 0.8, duration: 2 });
-                gsap.to("#planet-1", { x: -p * 500, opacity: p > 0.1 ? 0.4 : 0, duration: 1 });
-                gsap.to("#planet-2", { x: p * 400, opacity: p > 0.4 ? 0.3 : 0, duration: 1 });
+                nebula1Opacity(p > 0.2 ? (p - 0.2) * 0.8 : 0);
+                nebula2Opacity(p > 0.5 ? (p - 0.5) * 0.8 : 0);
+                planet1X(-p * 500);
+                planet1Opacity(p > 0.1 ? 0.4 : 0);
+                planet2X(p * 400);
+                planet2Opacity(p > 0.4 ? 0.3 : 0);
             }
         });
 
@@ -1321,8 +1802,8 @@
 
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             gsap.from(el, {
-                opacity: 0, y: 60, duration: 1.5, ease: "power3.out",
-                scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" }
+                opacity: 0, y: 40, duration: 0.9, ease: "power2.out",
+                scrollTrigger: { trigger: el, start: "top 92%", once: true }
             });
         });
 
@@ -1332,9 +1813,10 @@
         let startX;
         let scrollLeft;
         let autoScrollId;
-        let autoScrollSpeed = 0.6;
+        let autoScrollSpeed = enableHeavyEffects ? 0.35 : 0.2;
         let isPaused = false;
         let originalWidth = 0;
+        let timelineVisible = false;
 
         if (timeline) {
             // Clone all items for seamless infinite loop
@@ -1346,7 +1828,7 @@
             originalWidth = timeline.scrollWidth / 2;
 
             function stepAutoScroll() {
-                if (!isPaused && !isDown && timeline) {
+                if (!isPaused && !isDown && timeline && timelineVisible) {
                     timeline.scrollLeft += autoScrollSpeed;
                     if (timeline.scrollLeft >= originalWidth) {
                         timeline.scrollLeft -= originalWidth;
@@ -1398,6 +1880,11 @@
                 if (!isDown) isPaused = false;
             });
 
+            const timelineVisibilityObserver = new IntersectionObserver((entries) => {
+                timelineVisible = entries[0]?.isIntersecting ?? false;
+            }, { threshold: 0.15 });
+            timelineVisibilityObserver.observe(timeline);
+
             stepAutoScroll();
         }
 
@@ -1415,9 +1902,9 @@
             const angleStep = 360 / total;
             // Smaller radius on mobile
             const isMobile = window.innerWidth < 768;
-            const radius = isMobile ? 280 : 580;
+            const radius = isMobile ? 240 : 500;
             let currentAngle = 0;
-            let autoRotateId;
+            let carouselVisible = false;
             let isPaused = false;
             let isDragging = false;
             let startX;
@@ -1496,13 +1983,13 @@
 
             // Auto-rotate
             function stepAutoRotate() {
-                if (!isPaused && !isDragging) {
-                    currentAngle -= 0.12;
+                if (!isPaused && !isDragging && carouselVisible && enableHeavyEffects) {
+                    currentAngle -= 0.08;
                     track.style.transform = `rotateY(${currentAngle}deg)`;
                     positionCards();
                     updateDots();
                 }
-                autoRotateId = requestAnimationFrame(stepAutoRotate);
+                requestAnimationFrame(stepAutoRotate);
             }
 
             container?.addEventListener('mouseenter', () => { isPaused = true; });
@@ -1552,6 +2039,10 @@
 
             positionCards();
             updateDots();
+            const carouselVisibilityObserver = new IntersectionObserver((entries) => {
+                carouselVisible = entries[0]?.isIntersecting ?? false;
+            }, { threshold: 0.2 });
+            container && carouselVisibilityObserver.observe(container);
             stepAutoRotate();
         })();
 
@@ -1560,6 +2051,143 @@
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenuClose = document.getElementById('mobile-menu-close');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const languageButtons = document.querySelectorAll('.lang-toggle-btn');
+        const languageConfig = {
+            en: {
+                page_title: 'Spoderick | Portfolio Websites for Photographers',
+                brand_name: 'Spoderick',
+                nav_featured: 'Featured Work',
+                nav_storytelling: 'Storytelling',
+                nav_gallery: 'Gallery Modes',
+                nav_contact: 'Contact',
+                hero_tag: 'Custom Portfolio Websites for Photographers',
+                hero_title: 'Make the work feel unforgettable.',
+                hero_subtitle: "I'm Spoderick, and I design cinematic, high-converting portfolio websites that help photographers present their images beautifully, stand out, and turn visits into inquiries.",
+                section1_label: 'Section I',
+                section1_title: 'Featured Work.',
+                section1_desc: 'A premium homepage gallery that gives hero images room to breathe, guides the eye, and immediately tells a client this photographer takes presentation seriously.',
+                feature_card_1_title: 'Editorial Portraits',
+                feature_card_1_meta: 'Hero Layout // 2026',
+                feature_card_2_title: 'Travel Narratives',
+                feature_card_2_meta: 'Split Composition // 2026',
+                section2_label: 'Section II',
+                section2_title: 'Storytelling Projects.',
+                story_card_1_title: 'A full wedding weekend',
+                story_card_1_meta: 'Project Page',
+                story_card_2_title: 'A fashion editorial story',
+                story_card_2_meta: 'Lookbook Flow',
+                story_card_3_title: 'A destination travel series',
+                story_card_3_meta: 'Immersive Sequence',
+                section3_label: 'Section III',
+                section3_title: 'Gallery Modes.',
+                section3_meta: 'Designed to Fit Your Work',
+                section4_label: 'Section IV',
+                section4_title: 'Interactive Showcase.',
+                section4_meta: 'Premium Motion',
+                section5_label: 'Section V',
+                section5_title: 'Editorial Layout System.',
+                section5_meta: 'Art Direction in Code',
+                section5_note_label: 'Why It Works',
+                section5_note_body: 'This section shows how a custom site can feel editorial, cinematic, and intentionally arranged. The photography stays central while the layout adds personality, hierarchy, and a premium impression.',
+                section5_quote: '“The best portfolio sites do not just display images. They frame taste.”',
+                section5_quote_label: 'Design Principle',
+                contact_label: "Let's Build Yours",
+                contact_title: 'Book a photographer portfolio.',
+                contact_desc: 'Custom websites for photographers who want a stronger brand, better presentation, faster mobile performance, and more inquiries from the right clients.',
+                form_name_label: 'Name',
+                form_name_placeholder: 'YOUR NAME',
+                form_email_label: 'Email',
+                form_email_placeholder: 'EMAIL ADDRESS',
+                form_project_label: 'Project Type',
+                form_project_placeholder: 'WEDDINGS, FASHION, TRAVEL, PORTRAITS, OR COMMERCIAL',
+                form_submit: 'Request My Portfolio',
+                form_submit_sending: 'SENDING...',
+                form_status: "Inquiry received. I'll be in touch soon.",
+                footer_brand: '© 2024 SPODERICK // PORTFOLIO DEMO',
+                footer_top: 'Back to Top'
+            },
+            es: {
+                page_title: 'Spoderick | Sitios Portafolio para Fotografos',
+                brand_name: 'Spoderick',
+                nav_featured: 'Trabajo Destacado',
+                nav_storytelling: 'Narrativa',
+                nav_gallery: 'Modos de Galeria',
+                nav_contact: 'Contacto',
+                hero_tag: 'Sitios Portafolio Personalizados para Fotografos',
+                hero_title: 'Haz que el trabajo se sienta inolvidable.',
+                hero_subtitle: 'Soy Spoderick y diseno sitios portafolio cinematograficos y pensados para convertir, ayudando a fotografos a presentar sus imagenes con fuerza, diferenciarse y convertir visitas en consultas.',
+                section1_label: 'Seccion I',
+                section1_title: 'Trabajo Destacado.',
+                section1_desc: 'Una galeria principal premium que le da aire a las imagenes, guia la mirada y transmite al instante que este fotografo cuida su presentacion.',
+                feature_card_1_title: 'Retratos Editoriales',
+                feature_card_1_meta: 'Hero Layout // 2026',
+                feature_card_2_title: 'Narrativas de Viaje',
+                feature_card_2_meta: 'Composicion Dividida // 2026',
+                section2_label: 'Seccion II',
+                section2_title: 'Proyectos con Narrativa.',
+                story_card_1_title: 'Un fin de semana completo de boda',
+                story_card_1_meta: 'Pagina de Proyecto',
+                story_card_2_title: 'Una historia editorial de moda',
+                story_card_2_meta: 'Flujo tipo Lookbook',
+                story_card_3_title: 'Una serie de viaje de destino',
+                story_card_3_meta: 'Secuencia Inmersiva',
+                section3_label: 'Seccion III',
+                section3_title: 'Modos de Galeria.',
+                section3_meta: 'Disenado para Adaptarse a tu Trabajo',
+                section4_label: 'Seccion IV',
+                section4_title: 'Muestra Interactiva.',
+                section4_meta: 'Movimiento Premium',
+                section5_label: 'Seccion V',
+                section5_title: 'Sistema de Layout Editorial.',
+                section5_meta: 'Direccion de Arte en Codigo',
+                section5_note_label: 'Por que Funciona',
+                section5_note_body: 'Esta seccion muestra como un sitio personalizado puede sentirse editorial, cinematografico y cuidadosamente ordenado. La fotografia sigue siendo el centro, mientras el layout aporta personalidad, jerarquia y una impresion premium.',
+                section5_quote: '“Los mejores portafolios no solo muestran imagenes. Enmarcan criterio.”',
+                section5_quote_label: 'Principio de Diseno',
+                contact_label: 'Construyamos el Tuyo',
+                contact_title: 'Reserva tu portafolio fotografico.',
+                contact_desc: 'Sitios personalizados para fotografos que quieren una marca mas fuerte, mejor presentacion, mejor rendimiento en movil y mas consultas de los clientes correctos.',
+                form_name_label: 'Nombre',
+                form_name_placeholder: 'TU NOMBRE',
+                form_email_label: 'Correo',
+                form_email_placeholder: 'CORREO ELECTRONICO',
+                form_project_label: 'Tipo de Proyecto',
+                form_project_placeholder: 'BODAS, MODA, VIAJES, RETRATOS O COMERCIAL',
+                form_submit: 'Quiero Mi Portafolio',
+                form_submit_sending: 'ENVIANDO...',
+                form_status: 'Consulta recibida. Te escribire pronto.',
+                footer_brand: '© 2024 SPODERICK // DEMO DE PORTAFOLIO',
+                footer_top: 'Volver Arriba'
+            }
+        };
+        let currentLanguage = 'en';
+
+        function setLanguage(lang) {
+            const copy = languageConfig[lang] || languageConfig.en;
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.title = copy.page_title;
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.dataset.i18n;
+                if (copy[key]) {
+                    element.textContent = copy[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+                const key = element.dataset.i18nPlaceholder;
+                if (copy[key]) {
+                    element.setAttribute('placeholder', copy[key]);
+                }
+            });
+
+            languageButtons.forEach((button) => {
+                const isEnglish = button.id.includes('en');
+                const isActive = (lang === 'en' && isEnglish) || (lang === 'es' && !isEnglish);
+                button.classList.toggle('active', isActive);
+            });
+        }
 
         function openMobileMenu() {
             mobileMenu?.classList.add('active');
@@ -1573,6 +2201,10 @@
 
         mobileMenuBtn?.addEventListener('click', openMobileMenu);
         mobileMenuClose?.addEventListener('click', closeMobileMenu);
+        document.getElementById('lang-en')?.addEventListener('click', () => setLanguage('en'));
+        document.getElementById('lang-es')?.addEventListener('click', () => setLanguage('es'));
+        document.getElementById('lang-en-mobile')?.addEventListener('click', () => setLanguage('en'));
+        document.getElementById('lang-es-mobile')?.addEventListener('click', () => setLanguage('es'));
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 closeMobileMenu();
@@ -1580,6 +2212,7 @@
                 lenis?.scrollTo(targetId, { offset: -80, duration: 1.5 });
             });
         });
+        setLanguage('en');
 
         // --- Touch Events for Deep Space Carousel ---
         const timelineContainer = document.getElementById('timeline-container');
@@ -1603,7 +2236,7 @@
             e.preventDefault();
             const btn = e.target.querySelector('button');
             const status = document.getElementById('form-status');
-            btn.innerHTML = "LAUNCHING...";
+            btn.textContent = languageConfig[currentLanguage].form_submit_sending;
             setTimeout(() => {
                 btn.style.display = 'none';
                 status.classList.remove('hidden');
@@ -1611,17 +2244,33 @@
             }, 1500);
         });
 
-        document.querySelectorAll('.magnetic').forEach(el => {
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
-                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
-                gsap.to(el, { x, y, duration: 0.4 });
+        if (enableHeavyEffects) {
+            document.querySelectorAll('.magnetic').forEach(el => {
+                let magneticFrame = null;
+                let nextX = 0;
+                let nextY = 0;
+                const renderMagnetic = () => {
+                    gsap.to(el, { x: nextX, y: nextY, duration: 0.22, overwrite: true });
+                    magneticFrame = null;
+                };
+
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    nextX = (e.clientX - rect.left - rect.width / 2) * 0.18;
+                    nextY = (e.clientY - rect.top - rect.height / 2) * 0.18;
+                    if (!magneticFrame) magneticFrame = requestAnimationFrame(renderMagnetic);
+                }, { passive: true });
+
+                el.addEventListener('mouseleave', () => {
+                    if (magneticFrame) {
+                        cancelAnimationFrame(magneticFrame);
+                        magneticFrame = null;
+                    }
+                    gsap.to(el, { x: 0, y: 0, duration: 0.35, ease: "power2.out", overwrite: true });
+                });
             });
-            el.addEventListener('mouseleave', () => {
-                gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
-            });
-        });
+        }
+
     </script>
 </body>
 </html>
