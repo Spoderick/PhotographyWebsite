@@ -722,329 +722,257 @@
             transform: scale(1.3);
         }
 
-        /* Observation V: The Quantum Drift */
+        /* Observation V: Editorial Layout */
         .quantum-drift-section {
             position: relative;
             z-index: 5;
             contain: layout paint style;
             background:
-                radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.14), transparent 32%),
-                radial-gradient(circle at 82% 24%, rgba(244, 114, 182, 0.10), transparent 28%),
-                linear-gradient(180deg, rgba(15, 23, 42, 0.32), rgba(2, 6, 23, 0.82));
+                radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.08), transparent 30%),
+                radial-gradient(circle at 82% 20%, rgba(250, 204, 21, 0.08), transparent 28%),
+                linear-gradient(180deg, rgba(7, 12, 22, 0.84), rgba(2, 6, 23, 0.96));
         }
 
         .quantum-drift-section::before {
             content: "";
             position: absolute;
-            inset: 8% 5% auto;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.4), transparent);
-            opacity: 0.7;
+            inset: 0;
             pointer-events: none;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+            opacity: 0.45;
         }
 
-        .drift-layout {
+        .editorial-system {
             position: relative;
             display: grid;
-            grid-template-columns: 1fr;
             gap: 1rem;
             content-visibility: auto;
-            contain-intrinsic-size: 1600px;
+            contain-intrinsic-size: 1400px;
         }
 
-        .drift-note {
+        .editorial-note,
+        .editorial-quote-panel,
+        .editorial-caption {
+            border: 1px solid rgba(255,255,255,0.08);
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.74), rgba(2, 6, 23, 0.86));
+            box-shadow: 0 20px 50px rgba(0,0,0,0.22);
+        }
+
+        .editorial-note {
             position: relative;
             padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.74), rgba(2, 6, 23, 0.78)),
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 42%);
             overflow: hidden;
-            contain: paint;
         }
 
-        .drift-note::before {
+        .editorial-note::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent 45%);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), transparent 48%);
             pointer-events: none;
         }
 
-        .drift-note-label {
+        .editorial-note-label {
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
             font-size: 9px;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.34em;
             text-transform: uppercase;
-            color: rgba(56, 189, 248, 0.85);
+            color: rgba(56, 189, 248, 0.88);
         }
 
-        .drift-note p {
+        .editorial-note p {
             position: relative;
-            max-width: 28rem;
-            color: rgba(226, 232, 240, 0.82);
+            max-width: 34rem;
+            color: rgba(226, 232, 240, 0.84);
             line-height: 1.8;
         }
 
-        .drift-collage {
-            position: relative;
+        .editorial-grid {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1rem;
             contain: layout paint;
         }
 
-        .drift-card {
+        .editorial-frame,
+        .editorial-strip-frame {
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.08);
-            background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.58), rgba(2, 6, 23, 0.72)),
-                radial-gradient(circle at top, rgba(255,255,255,0.04), transparent 45%);
+            background: rgba(15, 23, 42, 0.55);
+            box-shadow: 0 18px 44px rgba(0,0,0,0.22);
+            contain: paint;
+        }
+
+        .editorial-frame {
             min-height: 280px;
-            isolation: isolate;
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.5s ease, box-shadow 0.5s ease;
-            transform: translateZ(0);
-            contain: layout paint style;
-            content-visibility: auto;
-            contain-intrinsic-size: 360px;
         }
 
-        .drift-card--float {
-            animation: driftFloat 14s ease-in-out infinite;
-            animation-play-state: paused;
-        }
-
-        .quantum-drift-section.is-active .drift-card--float {
-            animation-play-state: running;
-        }
-
-        .drift-card--float-slow {
-            animation-duration: 18s;
-        }
-
-        .drift-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 35%, rgba(2, 6, 23, 0.85) 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .drift-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border: 1px solid rgba(255,255,255,0.04);
-            box-shadow: inset 0 0 60px rgba(56, 189, 248, 0.03);
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .drift-card:hover {
-            transform: translateY(-10px) rotate(-0.8deg);
-            border-color: rgba(56, 189, 248, 0.28);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .drift-card img {
-            position: absolute;
-            inset: 0;
+        .editorial-frame img,
+        .editorial-strip-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: saturate(0.92) brightness(0.78);
-            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
-            transform: translateZ(0);
-        }
-
-        .drift-card:hover img {
-            transform: scale(1.06);
-            filter: saturate(1.05) brightness(0.92);
-        }
-
-        .drift-card-content {
-            position: absolute;
-            inset: auto 0 0 0;
-            z-index: 2;
-            padding: 1.25rem;
-        }
-
-        .drift-card-meta {
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            font-size: 9px;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: rgba(148, 163, 184, 0.95);
-        }
-
-        .drift-card-title {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(1.5rem, 3vw, 2.6rem);
-            line-height: 1.05;
-            color: #fff;
-            max-width: 12ch;
-        }
-
-        .drift-card-specs {
             display: block;
-            margin-top: 0.9rem;
+            transform: translateZ(0);
+            will-change: auto;
+        }
+
+        .editorial-frame::after,
+        .editorial-strip-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 44%, rgba(2, 6, 23, 0.9) 100%);
+            pointer-events: none;
+        }
+
+        .editorial-frame:hover {
+            transform: translateY(-4px);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            box-shadow: 0 24px 54px rgba(0,0,0,0.28);
+            border-color: rgba(255,255,255,0.14);
+        }
+
+        .editorial-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            padding: 1.1rem 1.1rem 1.2rem;
+        }
+
+        .editorial-index {
+            display: inline-block;
+            margin-bottom: 0.4rem;
             font-size: 9px;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.32em;
             text-transform: uppercase;
-            color: rgba(56, 189, 248, 0.95);
+            color: rgba(148, 163, 184, 0.92);
         }
 
-        .drift-card--hero {
-            min-height: 520px;
-        }
-
-        .drift-card--wide {
-            min-height: 360px;
-        }
-
-        .drift-card--tall {
-            min-height: 440px;
-        }
-
-        .drift-card--quote {
-            display: flex;
-            align-items: flex-end;
-            min-height: 320px;
-            padding: 1.5rem;
-            background:
-                radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 35%),
-                linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.95));
-            animation: none;
-        }
-
-        .drift-card--quote::before,
-        .drift-card--quote::after {
-            display: none;
-        }
-
-        .drift-quote {
-            position: relative;
-            z-index: 2;
-            max-width: 24rem;
-        }
-
-        .drift-quote p {
+        .editorial-title {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(1.6rem, 3vw, 2.5rem);
-            line-height: 1.15;
+            font-size: clamp(1.45rem, 2.8vw, 2.7rem);
+            line-height: 1.04;
+            color: #fff;
+            max-width: 11ch;
+        }
+
+        .editorial-spec {
+            display: inline-block;
+            margin-top: 0.85rem;
+            font-size: 9px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.92);
+        }
+
+        .editorial-quote-panel {
+            display: flex;
+            align-items: end;
+            min-height: 300px;
+            padding: 1.5rem;
+        }
+
+        .editorial-quote-panel p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.6rem, 3vw, 2.45rem);
+            line-height: 1.12;
             color: #fff;
         }
 
-        .drift-quote span {
+        .editorial-quote-panel span {
             display: inline-block;
             margin-top: 1rem;
             font-size: 9px;
             letter-spacing: 0.32em;
             text-transform: uppercase;
-            color: rgba(56, 189, 248, 0.8);
+            color: rgba(56, 189, 248, 0.84);
         }
 
-        .drift-strip {
+        .editorial-caption {
+            padding: 1.2rem 1.25rem;
+        }
+
+        .editorial-caption span {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 240, 0.58);
+        }
+
+        .editorial-caption p {
+            color: rgba(226, 232, 240, 0.82);
+            line-height: 1.75;
+        }
+
+        .editorial-strip {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 0.75rem;
         }
 
-        .drift-strip-frame {
-            position: relative;
+        .editorial-strip-frame {
             aspect-ratio: 4 / 5;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(15, 23, 42, 0.42);
-            contain: paint;
         }
 
-        .drift-strip-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.78);
-            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.6s ease;
-        }
-
-        .drift-strip-frame:hover img {
-            transform: scale(1.05);
-            filter: brightness(0.92);
-        }
-
-        @keyframes driftFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @media (min-width: 768px) {
-            .drift-layout {
+        @media (min-width: 900px) {
+            .editorial-system {
                 gap: 1.5rem;
             }
 
-            .drift-collage {
-                grid-template-columns: repeat(12, minmax(0, 1fr));
-                grid-auto-rows: minmax(90px, auto);
-                gap: 1.25rem;
-            }
-
-            .drift-note {
+            .editorial-note {
                 padding: 2rem;
             }
 
-            .drift-card--hero {
-                grid-column: 1 / 8;
-                grid-row: 1 / span 5;
+            .editorial-grid {
+                grid-template-columns: 1.3fr 0.9fr;
+                grid-template-areas:
+                    "hero side"
+                    "hero quote"
+                    "strip caption";
+                align-items: stretch;
+                gap: 1.25rem;
             }
 
-            .drift-card--wide {
-                grid-column: 8 / 13;
-                grid-row: 1 / span 3;
+            .editorial-frame--hero {
+                grid-area: hero;
+                min-height: 720px;
             }
 
-            .drift-card--quote {
-                grid-column: 8 / 13;
-                grid-row: 4 / span 2;
+            .editorial-frame--side {
+                grid-area: side;
+                min-height: 340px;
             }
 
-            .drift-card--tall {
-                grid-column: 1 / 5;
-                grid-row: 6 / span 4;
-                margin-top: -3.5rem;
+            .editorial-quote-panel {
+                grid-area: quote;
+                min-height: 340px;
             }
 
-            .drift-card--stack-a {
-                grid-column: 5 / 9;
-                grid-row: 6 / span 2;
-            }
-
-            .drift-card--stack-b {
-                grid-column: 9 / 13;
-                grid-row: 6 / span 4;
-                margin-top: 2.5rem;
-            }
-
-            .drift-strip {
+            .editorial-strip {
+                grid-area: strip;
                 grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 1rem;
+            }
+
+            .editorial-caption {
+                grid-area: caption;
+                align-self: stretch;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .drift-card,
-            .drift-card img,
-            .drift-strip-frame img {
+            .editorial-frame {
                 transition: none;
-            }
-
-            .drift-card--float {
-                animation: none;
             }
         }
 
@@ -1963,78 +1891,59 @@
                     <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal" data-i18n="section5_meta">Art Direction in Code</div>
                 </header>
 
-                <div class="drift-layout">
-                    <div class="drift-note scroll-reveal">
-                        <span class="drift-note-label" data-i18n="section5_note_label">Why It Works</span>
+                <div class="editorial-system">
+                    <div class="editorial-note scroll-reveal">
+                        <span class="editorial-note-label" data-i18n="section5_note_label">Why It Works</span>
                         <p data-i18n="section5_note_body">
                             This section shows how a custom site can feel editorial, cinematic, and intentionally arranged.
                             The photography stays central while the layout adds personality, hierarchy, and a premium impression.
                         </p>
                     </div>
 
-                    <div class="drift-collage">
-                        <article class="drift-card drift-card--hero drift-card--float scroll-reveal">
-                            <img src="Photos Portafolio/pexels-wolfgang-weiser-467045605-29491832.jpg" alt="Pulse Star" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                            <div class="drift-card-content">
-                                <span class="drift-card-meta">Pulsar / Anchor Frame</span>
-                                <h3 class="drift-card-title">Pulse Star</h3>
-                                <span class="drift-card-specs">f/4.0 · ISO 1600 · 85mm</span>
+                    <div class="editorial-grid">
+                        <article class="editorial-frame editorial-frame--hero scroll-reveal">
+                            <img src="Photos Portafolio/pexels-wolfgang-weiser-467045605-29491832.jpg" alt="Lead editorial frame" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="editorial-overlay">
+                                <span class="editorial-index">01 / Lead Frame</span>
+                                <h3 class="editorial-title">A homepage image that owns the page.</h3>
+                                <span class="editorial-spec">Hero image · hierarchy · negative space</span>
                             </div>
                         </article>
 
-                        <article class="drift-card drift-card--wide scroll-reveal">
-                            <img src="Photos Portafolio/pexels-pixabay-355887.jpg" alt="Galactic Core" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                            <div class="drift-card-content">
-                                <span class="drift-card-meta">Supermassive / Wide Drift</span>
-                                <h3 class="drift-card-title">Galactic Core</h3>
-                                <span class="drift-card-specs">f/2.8 · ISO 1600 · 24mm</span>
+                        <article class="editorial-frame editorial-frame--side scroll-reveal">
+                            <img src="Photos Portafolio/pexels-emir-anik-45418356-10919408.jpg" alt="Supporting editorial frame" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="editorial-overlay">
+                                <span class="editorial-index">02 / Support</span>
+                                <h3 class="editorial-title">A second frame that extends the mood.</h3>
+                                <span class="editorial-spec">Pacing · rhythm · curation</span>
                             </div>
                         </article>
 
-                        <article class="drift-card drift-card--quote scroll-reveal">
-                            <div class="drift-quote">
+                        <aside class="editorial-quote-panel scroll-reveal">
+                            <div>
                                 <p data-i18n="section5_quote">“The best portfolio sites do not just display images. They frame taste.”</p>
                                 <span data-i18n="section5_quote_label">Design Principle</span>
                             </div>
-                        </article>
+                        </aside>
 
-                        <article class="drift-card drift-card--tall drift-card--float drift-card--float-slow scroll-reveal">
-                            <img src="Photos Portafolio/pexels-brett-sayles-3691531.jpg" alt="Event Horizon" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                            <div class="drift-card-content">
-                                <span class="drift-card-meta">Singularity / Vertical Study</span>
-                                <h3 class="drift-card-title">Event Horizon</h3>
-                                <span class="drift-card-specs">f/1.4 · ISO 12800 · 50mm</span>
+                        <div class="editorial-strip scroll-reveal">
+                            <div class="editorial-strip-frame">
+                                <img src="Photos Portafolio/pexels-blitzboy-958362.jpg" alt="Editorial strip image one" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
                             </div>
-                        </article>
-
-                        <article class="drift-card drift-card--stack-a scroll-reveal">
-                            <img src="Photos Portafolio/pexels-emir-anik-45418356-10919408.jpg" alt="Nebula Dust" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                            <div class="drift-card-content">
-                                <span class="drift-card-meta">Interstellar / Fragment</span>
-                                <h3 class="drift-card-title">Nebula Dust</h3>
-                                <span class="drift-card-specs">f/4.0 · ISO 3200 · 35mm</span>
+                            <div class="editorial-strip-frame">
+                                <img src="Photos Portafolio/pexels-minan1398-813269.jpg" alt="Editorial strip image two" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
                             </div>
-                        </article>
-
-                        <article class="drift-card drift-card--stack-b drift-card--float scroll-reveal">
-                            <img src="Photos Portafolio/pexels-thilina-alagiyawanna-3266092-36833550.jpg" alt="Cosmic Ray" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                            <div class="drift-card-content">
-                                <span class="drift-card-meta">High Energy / Late Exposure</span>
-                                <h3 class="drift-card-title">Cosmic Ray</h3>
-                                <span class="drift-card-specs">f/2.8 · ISO 25600 · 70mm</span>
+                            <div class="editorial-strip-frame">
+                                <img src="Photos Portafolio/pexels-roy-yang-135943799-18709679.jpg" alt="Editorial strip image three" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
                             </div>
-                        </article>
-                    </div>
-
-                    <div class="drift-strip scroll-reveal">
-                        <div class="drift-strip-frame">
-                            <img src="Photos Portafolio/pexels-blitzboy-958362.jpg" alt="Solar Flare" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
                         </div>
-                        <div class="drift-strip-frame">
-                            <img src="Photos Portafolio/pexels-minan1398-813269.jpg" alt="Void Echo" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
-                        </div>
-                        <div class="drift-strip-frame">
-                            <img src="Photos Portafolio/pexels-roy-yang-135943799-18709679.jpg" alt="Stellar Wind" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+
+                        <div class="editorial-caption scroll-reveal">
+                            <span>03 / Presentation Logic</span>
+                            <p>
+                                Instead of stacking effects, this layout uses scale, spacing, and sequence to make the photographs feel expensive.
+                                It keeps the interaction light, the scroll responsive, and the work itself in control.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2380,15 +2289,6 @@
                 scrollTrigger: { trigger: el, start: "top 92%", once: true }
             });
         });
-
-        const quantumDriftSection = document.getElementById('observation-v');
-        if (quantumDriftSection && enableHeavyEffects && !lowPowerDevice) {
-            const driftVisibilityObserver = new IntersectionObserver((entries) => {
-                const active = entries[0]?.isIntersecting ?? false;
-                quantumDriftSection.classList.toggle('is-active', active);
-            }, { threshold: 0.18 });
-            driftVisibilityObserver.observe(quantumDriftSection);
-        }
 
         // --- Deep Space Carousel: Infinite Loop Auto-scroll + Drag ---
         const timeline = document.getElementById('timeline-container');
