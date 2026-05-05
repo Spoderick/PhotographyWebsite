@@ -324,23 +324,25 @@
         }
 
         #cursor {
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8),
-                        0 0 30px 10px rgba(255, 243, 10, 0.4);
+            width: 12px;
+            height: 12px;
+            background: #fff7c2;
+            box-shadow: 0 0 18px 5px rgba(255, 255, 255, 0.85),
+                        0 0 42px 14px rgba(255, 243, 10, 0.48);
             z-index: 10;
+            opacity: 1;
         }
         
         .trail {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background: #facc15; /* Yellow-400 */
-            opacity: 0.6;
+            opacity: 0.72;
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.45);
         }
 
         .cursor-active #cursor {
-            transform: translate(-50%, -50%) scale(5);
+            transform: translate(-50%, -50%) scale(3.4);
             background: rgba(255, 255, 255, 0.1);
             border: 0.5px solid rgba(255, 255, 255, 0.4);
             box-shadow: 0 0 40px 15px rgba(250, 204, 21, 0.2);
@@ -1048,6 +1050,469 @@
         .mobile-lang-wrap {
             margin-top: 1rem;
         }
+
+        /* Editing Table */
+        .editing-table-section {
+            position: relative;
+            z-index: 5;
+            contain: layout paint style;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(250, 204, 21, 0.08), transparent 24%),
+                radial-gradient(circle at 85% 18%, rgba(56, 189, 248, 0.12), transparent 28%),
+                linear-gradient(180deg, rgba(8, 15, 28, 0.95), rgba(2, 6, 23, 0.98));
+        }
+
+        .editing-table-board {
+            position: relative;
+            min-height: 1040px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            background:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.65), rgba(2, 6, 23, 0.92));
+            background-size: 28px 28px, 28px 28px, cover;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 30px 90px rgba(0,0,0,0.28);
+            content-visibility: auto;
+            contain-intrinsic-size: 1040px;
+        }
+
+        .editing-table-board::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 25% 22%, rgba(255,255,255,0.08), transparent 18%),
+                radial-gradient(circle at 72% 68%, rgba(255,255,255,0.05), transparent 20%);
+            pointer-events: none;
+        }
+
+        .editing-table-board::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+
+        .editing-ledger {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 4;
+            width: min(24rem, calc(100% - 2rem));
+            padding: 1rem 1.1rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            background: rgba(6, 11, 24, 0.74);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.24);
+        }
+
+        .editing-ledger-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .editing-ledger-head span,
+        .editing-ledger-grid span {
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 240, 0.55);
+        }
+
+        .editing-ledger-head strong {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: #fff;
+        }
+
+        .editing-ledger-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .editing-ledger-grid strong {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+        }
+
+        .editing-table-copy {
+            position: relative;
+            z-index: 3;
+            max-width: 30rem;
+            padding: 1.6rem 1.7rem;
+            margin: 1.25rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+        }
+
+        .editing-table-copy p {
+            color: rgba(226, 232, 240, 0.82);
+            line-height: 1.8;
+        }
+
+        .editing-surface {
+            position: relative;
+            min-height: 820px;
+            margin-top: 1.5rem;
+            isolation: isolate;
+        }
+
+        .editing-surface::before,
+        .editing-surface::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .editing-surface::before {
+            inset: 0;
+            background:
+                radial-gradient(circle at 24% 28%, rgba(250, 204, 21, 0.12), transparent 20%),
+                radial-gradient(circle at 78% 62%, rgba(56, 189, 248, 0.14), transparent 26%);
+            filter: blur(16px);
+            opacity: 0.9;
+        }
+
+        .editing-surface::after {
+            inset: 3.5rem 2rem 2rem;
+            border: 1px dashed rgba(255,255,255,0.06);
+            border-radius: 22px;
+            opacity: 0.8;
+        }
+
+        .proof-card,
+        .note-card,
+        .strip-card {
+            position: absolute;
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.6s ease, border-color 0.4s ease;
+            will-change: transform;
+        }
+
+        .proof-card {
+            width: clamp(220px, 26vw, 360px);
+            aspect-ratio: 4 / 5;
+            padding: 12px 12px 58px;
+            background: #f6f2ea;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            cursor: pointer;
+            border-radius: 4px;
+            transform-origin: center center;
+            backface-visibility: hidden;
+        }
+
+        .proof-card::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 84px;
+            height: 18px;
+            transform: translateX(-50%) rotate(-1deg);
+            background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(226, 232, 240, 0.45));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-radius: 3px;
+        }
+
+        .proof-card::after {
+            content: attr(data-mark);
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(15, 23, 42, 0.55);
+        }
+
+        .proof-card:hover {
+            transform: translateY(-18px) rotate(0deg) scale(1.04) !important;
+            box-shadow: 0 36px 80px rgba(0,0,0,0.48);
+            z-index: 10;
+        }
+
+        .proof-card:focus-visible {
+            outline: 2px solid rgba(56, 189, 248, 0.7);
+            outline-offset: 8px;
+        }
+
+        .proof-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            filter: saturate(0.96) contrast(1.02);
+        }
+
+        .proof-meta {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            right: 54px;
+        }
+
+        .proof-meta span {
+            display: block;
+            font-size: 9px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.82);
+            margin-bottom: 0.35rem;
+        }
+
+        .proof-meta strong {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #0f172a;
+            font-size: 1.1rem;
+            line-height: 1.1;
+        }
+
+        .proof-meta em {
+            display: block;
+            margin-top: 0.45rem;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(15, 23, 42, 0.42);
+            font-style: normal;
+        }
+
+        .proof-card.is-selected {
+            outline: 2px solid rgba(250, 204, 21, 0.45);
+            outline-offset: 6px;
+            box-shadow: 0 36px 84px rgba(0,0,0,0.48), 0 0 0 1px rgba(250, 204, 21, 0.18);
+        }
+
+        .proof-card.is-selected .proof-select-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .proof-select-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 2;
+            padding: 0.5rem 0.6rem 0.45rem;
+            border-radius: 999px;
+            background: rgba(2, 6, 23, 0.82);
+            color: #f8fafc;
+            font-size: 9px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .note-card {
+            width: clamp(220px, 24vw, 280px);
+            padding: 1rem 1rem 1.15rem;
+            background: #f3c969;
+            color: #1f2937;
+            box-shadow: 0 22px 40px rgba(0,0,0,0.22);
+            transform: rotate(-2deg);
+            z-index: 4;
+            border-radius: 6px;
+        }
+
+        .note-card::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: #f8fafc;
+            box-shadow: inset 0 0 0 3px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(0,0,0,0.16);
+        }
+
+        .note-card span {
+            display: block;
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .note-card p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            line-height: 1.45;
+            font-size: 1.1rem;
+        }
+
+        .note-card small {
+            display: block;
+            margin-top: 0.95rem;
+            font-size: 9px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            opacity: 0.72;
+        }
+
+        .strip-card {
+            width: min(72vw, 760px);
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.35);
+            z-index: 2;
+            border-radius: 18px;
+        }
+
+        .strip-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.85rem;
+            padding: 0.25rem 0.25rem 0 0.25rem;
+        }
+
+        .strip-card-head span {
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 240, 0.62);
+        }
+
+        .strip-card-head strong {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .strip-card-head::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(56, 189, 248, 0.4), rgba(255,255,255,0));
+        }
+
+        .strip-card-inner {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .strip-card-inner img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            display: block;
+            filter: saturate(0.92) brightness(0.82);
+            border-radius: 8px;
+        }
+
+        .editor-tag {
+            position: absolute;
+            padding: 0.45rem 0.7rem;
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 999px;
+            background: rgba(2, 6, 23, 0.78);
+            color: rgba(226, 232, 240, 0.78);
+            font-size: 9px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            z-index: 5;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+        }
+
+        .proof-card[data-mark="select"] { z-index: 7; }
+        .proof-card[data-mark="crop"] { z-index: 5; }
+        .proof-card[data-mark="alt"] { z-index: 6; }
+        .proof-card[data-mark="story"] { z-index: 4; }
+
+        @media (min-width: 768px) {
+            .editing-table-copy {
+                margin: 1.4rem;
+            }
+
+            .editing-surface {
+                min-height: 840px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .editing-table-board {
+                min-height: auto;
+                padding-bottom: 1.5rem;
+                border-radius: 24px;
+            }
+
+            .editing-ledger {
+                position: relative;
+                inset: auto;
+                width: auto;
+                margin: 1rem 1rem 0;
+            }
+
+            .editing-surface {
+                min-height: auto;
+                display: grid;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .proof-card,
+            .note-card,
+            .strip-card,
+            .editor-tag {
+                position: relative;
+                width: 100%;
+                inset: auto !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+            }
+
+            .proof-card {
+                aspect-ratio: 4 / 5;
+            }
+
+            .strip-card {
+                order: 6;
+            }
+
+            .editor-tag {
+                display: inline-block;
+                width: fit-content;
+            }
+
+            .proof-card::before {
+                width: 68px;
+            }
+
+            .editing-table-copy {
+                margin: 1rem;
+                max-width: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface">
@@ -1549,6 +2014,111 @@
             </div>
         </section>
 
+        <!-- EDITING TABLE -->
+        <section id="editing-table" class="editing-table-section overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <header class="mb-10 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal" data-i18n="editing_label">Section VI</span>
+                        <h2 class="font-display text-5xl md:text-7xl text-white italic scroll-reveal" data-i18n="editing_title">The Editing Table.</h2>
+                    </div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal" data-i18n="editing_meta">Curation in Motion</div>
+                </header>
+
+                <div class="editing-table-board scroll-reveal">
+                    <div class="editing-ledger">
+                        <div class="editing-ledger-head">
+                            <span data-i18n="editing_ledger_label">Edit Session</span>
+                            <strong data-i18n="editing_ledger_title">Sequence Review</strong>
+                        </div>
+                        <div class="editing-ledger-grid">
+                            <div>
+                                <span data-i18n="editing_ledger_stat_1_label">selects</span>
+                                <strong data-i18n="editing_ledger_stat_1_value">04</strong>
+                            </div>
+                            <div>
+                                <span data-i18n="editing_ledger_stat_2_label">layout</span>
+                                <strong data-i18n="editing_ledger_stat_2_value">editorial</strong>
+                            </div>
+                            <div>
+                                <span data-i18n="editing_ledger_stat_3_label">goal</span>
+                                <strong data-i18n="editing_ledger_stat_3_value">impact</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="editing-table-copy">
+                        <span class="drift-note-label" data-i18n="editing_note_label">Art Director View</span>
+                        <p data-i18n="editing_note_body">Instead of a normal grid, this section feels like a live editing desk: selects, proofs, notes, and crops all working together to make the photographs feel curated by hand.</p>
+                    </div>
+
+                    <div class="editing-surface" id="editing-surface">
+                        <div class="editor-tag" style="top: 4%; left: 58%;" data-i18n="editing_tag_1">selected sequence</div>
+                        <div class="editor-tag" style="top: 63%; left: 9%;" data-i18n="editing_tag_2">contact sheet</div>
+                        <div class="editor-tag" style="top: 14%; right: 8%;" data-i18n="editing_tag_3">final mood</div>
+
+                        <article class="proof-card is-selected" data-mark="select" tabindex="0" aria-label="Lead image proof" style="top: 12%; left: 8%; transform: rotate(-6deg);">
+                            <div class="proof-select-badge" data-i18n="editing_selected_badge">selected</div>
+                            <img src="Photos Portafolio/pexels-wolfgang-weiser-467045605-29491832.jpg" alt="Selected frame" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="proof-meta">
+                                <span data-i18n="editing_proof_1_meta">hero pick</span>
+                                <strong data-i18n="editing_proof_1_title">Lead Image</strong>
+                                <em data-i18n="editing_proof_1_note">opening frame</em>
+                            </div>
+                        </article>
+
+                        <article class="proof-card" data-mark="crop" tabindex="0" aria-label="Crop study proof" style="top: 9%; left: 37%; transform: rotate(5deg);">
+                            <div class="proof-select-badge" data-i18n="editing_selected_badge">selected</div>
+                            <img src="Photos Portafolio/pexels-emir-anik-45418356-10919408.jpg" alt="Crop study" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="proof-meta">
+                                <span data-i18n="editing_proof_2_meta">crop study</span>
+                                <strong data-i18n="editing_proof_2_title">Atmosphere</strong>
+                                <em data-i18n="editing_proof_2_note">shape and tension</em>
+                            </div>
+                        </article>
+
+                        <article class="proof-card" data-mark="alt" tabindex="0" aria-label="Alternate movement proof" style="top: 28%; right: 10%; transform: rotate(7deg);">
+                            <div class="proof-select-badge" data-i18n="editing_selected_badge">selected</div>
+                            <img src="Photos Portafolio/pexels-thilina-alagiyawanna-3266092-36833550.jpg" alt="Alternate selection" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="proof-meta">
+                                <span data-i18n="editing_proof_3_meta">alternate</span>
+                                <strong data-i18n="editing_proof_3_title">Movement</strong>
+                                <em data-i18n="editing_proof_3_note">energy option</em>
+                            </div>
+                        </article>
+
+                        <article class="proof-card" data-mark="story" tabindex="0" aria-label="Narrative frame proof" style="top: 48%; left: 30%; transform: rotate(-4deg);">
+                            <div class="proof-select-badge" data-i18n="editing_selected_badge">selected</div>
+                            <img src="Photos Portafolio/pexels-brett-sayles-3691531.jpg" alt="Story frame" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            <div class="proof-meta">
+                                <span data-i18n="editing_proof_4_meta">story beat</span>
+                                <strong data-i18n="editing_proof_4_title">Narrative Frame</strong>
+                                <em data-i18n="editing_proof_4_note">supporting beat</em>
+                            </div>
+                        </article>
+
+                        <aside class="note-card" style="top: 18%; right: 28%;">
+                            <span data-i18n="editing_note_card_label">note</span>
+                            <p data-i18n="editing_note_card_body">Keep the frame loose. Let the negative space feel expensive.</p>
+                            <small data-i18n="editing_note_card_footer">sequence before density</small>
+                        </aside>
+
+                        <div class="strip-card" style="bottom: 7%; left: 14%; transform: rotate(-1.8deg);">
+                            <div class="strip-card-head">
+                                <span data-i18n="editing_strip_label">contact strip</span>
+                                <strong data-i18n="editing_strip_title">Supporting Frames</strong>
+                            </div>
+                            <div class="strip-card-inner">
+                                <img src="Photos Portafolio/pexels-blitzboy-958362.jpg" alt="Contact strip 1" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                                <img src="Photos Portafolio/pexels-minan1398-813269.jpg" alt="Contact strip 2" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                                <img src="Photos Portafolio/pexels-roy-yang-135943799-18709679.jpg" alt="Contact strip 3" class="reveal-img" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACT -->
         <section id="contact">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
@@ -1706,6 +2276,8 @@
 
             document.body.style.cursor = 'none';
             wrapper.style.display = 'block';
+            wrapper.style.visibility = 'visible';
+            cursorHead.style.opacity = '1';
             document.querySelectorAll('a, button, input, textarea, .magnetic, .group').forEach((el) => {
                 el.style.cursor = 'none';
             });
@@ -1714,6 +2286,7 @@
                 const div = document.createElement('div');
                 div.className = 'cursor-part trail';
                 wrapper.appendChild(div);
+                gsap.set(div, { scale: 1 - (i / trailCount), opacity: 0.8 - (i * 0.07) });
                 trails.push({
                     el: div,
                     x: gsap.quickTo(div, "x", { duration: 0.1 + (i * 0.04), ease: "power2.out" }),
@@ -1724,8 +2297,10 @@
             const headX = gsap.quickTo(cursorHead, "x", { duration: 0.02, ease: "none" });
             const headY = gsap.quickTo(cursorHead, "y", { duration: 0.02, ease: "none" });
 
-            window.addEventListener('mousemove', (e) => {
-                const { clientX: x, clientY: y } = e;
+            const moveCursor = (e) => {
+                const x = e.clientX ?? (e.touches && e.touches[0]?.clientX);
+                const y = e.clientY ?? (e.touches && e.touches[0]?.clientY);
+                if (typeof x !== 'number' || typeof y !== 'number') return;
                 headX(x);
                 headY(y);
                 trails.forEach((t, i) => {
@@ -1733,7 +2308,9 @@
                     t.y(y);
                     gsap.set(t.el, { scale: 1 - (i / trailCount) });
                 });
-            }, { passive: true });
+            };
+
+            document.addEventListener('pointermove', moveCursor, { passive: true });
 
             document.querySelectorAll('a, button, input, textarea, .magnetic').forEach(el => {
                 el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
@@ -2091,6 +2668,40 @@
                 section5_note_body: 'This section shows how a custom site can feel editorial, cinematic, and intentionally arranged. The photography stays central while the layout adds personality, hierarchy, and a premium impression.',
                 section5_quote: '“The best portfolio sites do not just display images. They frame taste.”',
                 section5_quote_label: 'Design Principle',
+                editing_label: 'Section VI',
+                editing_title: 'The Editing Table.',
+                editing_meta: 'Curation in Motion',
+                editing_note_label: 'Art Director View',
+                editing_note_body: 'Instead of a normal grid, this section feels like a live editing desk: selects, proofs, notes, and crops all working together to make the photographs feel curated by hand.',
+                editing_ledger_label: 'Edit Session',
+                editing_ledger_title: 'Sequence Review',
+                editing_ledger_stat_1_label: 'selects',
+                editing_ledger_stat_1_value: '04',
+                editing_ledger_stat_2_label: 'layout',
+                editing_ledger_stat_2_value: 'editorial',
+                editing_ledger_stat_3_label: 'goal',
+                editing_ledger_stat_3_value: 'impact',
+                editing_tag_1: 'selected sequence',
+                editing_tag_2: 'contact sheet',
+                editing_tag_3: 'final mood',
+                editing_selected_badge: 'selected',
+                editing_proof_1_meta: 'hero pick',
+                editing_proof_1_title: 'Lead Image',
+                editing_proof_1_note: 'opening frame',
+                editing_proof_2_meta: 'crop study',
+                editing_proof_2_title: 'Atmosphere',
+                editing_proof_2_note: 'shape and tension',
+                editing_proof_3_meta: 'alternate',
+                editing_proof_3_title: 'Movement',
+                editing_proof_3_note: 'energy option',
+                editing_proof_4_meta: 'story beat',
+                editing_proof_4_title: 'Narrative Frame',
+                editing_proof_4_note: 'supporting beat',
+                editing_note_card_label: 'note',
+                editing_note_card_body: 'Keep the frame loose. Let the negative space feel expensive.',
+                editing_note_card_footer: 'sequence before density',
+                editing_strip_label: 'contact strip',
+                editing_strip_title: 'Supporting Frames',
                 contact_label: "Let's Build Yours",
                 contact_title: 'Book a photographer portfolio.',
                 contact_desc: 'Custom websites for photographers who want a stronger brand, better presentation, faster mobile performance, and more inquiries from the right clients.',
@@ -2144,6 +2755,40 @@
                 section5_note_body: 'Esta seccion muestra como un sitio personalizado puede sentirse editorial, cinematografico y cuidadosamente ordenado. La fotografia sigue siendo el centro, mientras el layout aporta personalidad, jerarquia y una impresion premium.',
                 section5_quote: '“Los mejores portafolios no solo muestran imagenes. Enmarcan criterio.”',
                 section5_quote_label: 'Principio de Diseno',
+                editing_label: 'Seccion VI',
+                editing_title: 'La Mesa de Edicion.',
+                editing_meta: 'Curaduria en Movimiento',
+                editing_note_label: 'Vista de Direccion de Arte',
+                editing_note_body: 'En lugar de una grilla normal, esta seccion se siente como una mesa de edicion viva: selecciones, pruebas, notas y recortes trabajando juntos para que las fotografias se sientan curadas a mano.',
+                editing_ledger_label: 'Sesion de Edicion',
+                editing_ledger_title: 'Revision de Secuencia',
+                editing_ledger_stat_1_label: 'selecciones',
+                editing_ledger_stat_1_value: '04',
+                editing_ledger_stat_2_label: 'layout',
+                editing_ledger_stat_2_value: 'editorial',
+                editing_ledger_stat_3_label: 'objetivo',
+                editing_ledger_stat_3_value: 'impacto',
+                editing_tag_1: 'secuencia elegida',
+                editing_tag_2: 'hoja de contacto',
+                editing_tag_3: 'mood final',
+                editing_selected_badge: 'elegida',
+                editing_proof_1_meta: 'toma principal',
+                editing_proof_1_title: 'Imagen Lider',
+                editing_proof_1_note: 'frame de apertura',
+                editing_proof_2_meta: 'estudio de recorte',
+                editing_proof_2_title: 'Atmosfera',
+                editing_proof_2_note: 'forma y tension',
+                editing_proof_3_meta: 'alternativa',
+                editing_proof_3_title: 'Movimiento',
+                editing_proof_3_note: 'opcion con energia',
+                editing_proof_4_meta: 'momento narrativo',
+                editing_proof_4_title: 'Frame Narrativo',
+                editing_proof_4_note: 'beat de apoyo',
+                editing_note_card_label: 'nota',
+                editing_note_card_body: 'Deja el encuadre respirar. Que el espacio negativo se sienta premium.',
+                editing_note_card_footer: 'secuencia antes que densidad',
+                editing_strip_label: 'hoja de contacto',
+                editing_strip_title: 'Frames de Apoyo',
                 contact_label: 'Construyamos el Tuyo',
                 contact_title: 'Reserva tu portafolio fotografico.',
                 contact_desc: 'Sitios personalizados para fotografos que quieren una marca mas fuerte, mejor presentacion, mejor rendimiento en movil y mas consultas de los clientes correctos.',
@@ -2242,6 +2887,17 @@
                 status.classList.remove('hidden');
                 gsap.from(status, { opacity: 0, y: 10, duration: 0.5 });
             }, 1500);
+        });
+
+        const proofCards = document.querySelectorAll('.proof-card');
+        const selectProofCard = (activeCard) => {
+            proofCards.forEach((card) => card.classList.toggle('is-selected', card === activeCard));
+        };
+
+        proofCards.forEach((card) => {
+            card.addEventListener('mouseenter', () => selectProofCard(card), { passive: true });
+            card.addEventListener('focus', () => selectProofCard(card), { passive: true });
+            card.addEventListener('click', () => selectProofCard(card), { passive: true });
         });
 
         if (enableHeavyEffects) {
