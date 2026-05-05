@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CELESTIAL ARCHIVE | The Infinite Voyage</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#e2e8f0",
+                        "secondary": "#94a3b8",
+                        "background": "#020617",
+                        "accent": "#38bdf8",
+                        "surface": "#0f172a",
+                        "deep-void": "#000000"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter", "sans-serif"],
+                        "display": ["Playfair Display", "serif"]
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "page-margin": "80px",
+                        "section-gap": "200px",
+                        "page-margin-mobile": "16px",
+                        "page-margin-sm": "24px",
+                        "page-margin-md": "48px",
+                        "page-margin-lg": "80px"
+                    }
+                },
+                screens: {
+                    'xs': '475px',
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                }
+            },
+        }
+    </script>
+    <style>
+        /* Global Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Responsive Page Padding */
+        .px-responsive {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        @media (min-width: 640px) {
+            .px-responsive {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+        @media (min-width: 768px) {
+            .px-responsive {
+                padding-left: 48px;
+                padding-right: 48px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .px-responsive {
+                padding-left: 80px;
+                padding-right: 80px;
+            }
+        }
+
+        :root {
+            --nav-height: 80px;
+        }
+
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            cursor: none; /* Hides the default mouse cursor */
+        }
+
+        /* Ensure interactive elements also hide the cursor */
+        a, button, input, textarea, .magnetic, .group {
+            cursor: none !important;
+        }
+        
+        /* 1. THE CSS ANCHOR FIX */
+        [id] {
+            scroll-margin-top: var(--nav-height);
+        }
+
+        /* Full Screen Section Setup */
+        section {
+            min-height: 100vh;
+            min-height: 100svh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: 60px 0;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 100px 0;
+            }
+        }
+
+        /* Mobile Navigation */
+        #mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        #mobile-menu.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-style: italic;
+            color: #fff;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        #mobile-menu a:hover,
+        #mobile-menu a:active {
+            opacity: 1;
+            color: #38bdf8;
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Mobile 3D Carousel */
+        @media (max-width: 767px) {
+            .carousel-3d-container {
+                height: 400px;
+                perspective: 1000px;
+            }
+            .carousel-3d-track {
+                width: 200px;
+                height: 280px;
+            }
+            .carousel-3d-card {
+                width: 200px;
+                height: 280px;
+            }
+            .carousel-3d-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            .carousel-3d-nav.prev { left: 16px; }
+            .carousel-3d-nav.next { right: 16px; }
+            .card-3d-title {
+                font-size: 1rem;
+            }
+            .card-3d-overlay {
+                padding: 1rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (pointer: coarse) {
+            body {
+                cursor: auto !important;
+            }
+            a, button, input, textarea, .magnetic, .group {
+                cursor: pointer !important;
+            }
+            #cursor-wrapper {
+                display: none !important;
+            }
+            .archive-card:hover img,
+            .timeline-item:hover img {
+                transform: none;
+            }
+        }
+
+        /* Animated Deep Space Background */
+        #space-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: #020617;
+            transition: background 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        #starfield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nebula {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            top: -25%;
+            left: -25%;
+            background: radial-gradient(circle at 70% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+            filter: blur(100px);
+            opacity: 0;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0;
+            box-shadow: inset -20px -20px 50px rgba(0,0,0,0.8),
+                        0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Optimized Image Loading */
+        .reveal-img-container {
+            background: rgba(255,255,255,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reveal-img {
+            opacity: 0;
+            transform: scale(1.1) translateY(20px);
+            transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1),
+                        transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: blur(10px);
+        }
+
+        .reveal-img.loaded,
+        .reveal-img[data-loaded="true"] {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
+
+        /* Fluid Contact Section */
+        #contact {
+            container-type: inline-size;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @container (min-width: 800px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1.2fr;
+                gap: 5rem;
+            }
+        }
+
+        /* Custom Cursor & Shooting Star Trail */
+        #cursor-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-part {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+
+        #cursor {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8),
+                        0 0 30px 10px rgba(255, 243, 10, 0.4);
+            z-index: 10;
+        }
+        
+        .trail {
+            width: 6px;
+            height: 6px;
+            background: #facc15; /* Yellow-400 */
+            opacity: 0.6;
+        }
+
+        .cursor-active #cursor {
+            transform: translate(-50%, -50%) scale(5);
+            background: rgba(255, 255, 255, 0.1);
+            border: 0.5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 40px 15px rgba(250, 204, 21, 0.2);
+        }
+
+        .cursor-active .trail {
+            opacity: 0;
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #38bdf8;
+            transform: translateX(-101%);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-link:hover::after {
+            transform: translateX(0);
+        }
+
+        html.lenis {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto;
+        }
+
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        /* Archive Card Interactions */
+        .archive-card {
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .archive-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.6s ease, box-shadow 0.6s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .archive-card:hover::before {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.08);
+        }
+
+        .archive-card img {
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+        }
+
+        .archive-card:hover img {
+            transform: scale(1.08);
+            filter: grayscale(0) brightness(0.6);
+        }
+
+        .archive-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.4) 50%, transparent 100%);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1), transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .archive-card:hover .archive-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .archive-meta {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.8);
+            margin-bottom: 0.5rem;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+        }
+
+        .archive-card:hover .archive-meta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .archive-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #fff;
+            line-height: 1.3;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
+        }
+
+        .archive-card:hover .archive-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .archive-specs {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.9);
+            margin-top: 0.75rem;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1) 0.2s;
+        }
+
+        .archive-card:hover .archive-specs {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .archive-accent-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            transform: scaleX(0);
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 4;
+        }
+
+        .archive-card:hover .archive-accent-line {
+            transform: scaleX(1);
+        }
+
+        /* Deep Space Carousel */
+        #timeline-container {
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #timeline-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        #timeline-container.dragging {
+            cursor: grabbing;
+            user-select: none;
+        }
+
+        #timeline-container.dragging .timeline-item {
+            pointer-events: none;
+        }
+
+        .timeline-item {
+            min-width: 600px;
+            flex-shrink: 0;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-8px);
+        }
+
+        /* 3D Carousel */
+        .carousel-3d-container {
+            perspective: 2000px;
+            perspective-origin: center 42%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 640px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-3d-track {
+            position: relative;
+            width: 300px;
+            height: 420px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s linear;
+        }
+
+        .carousel-3d-card {
+            position: absolute;
+            inset: 0;
+            width: 300px;
+            height: 420px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: box-shadow 0.5s ease, filter 0.5s ease;
+            will-change: transform, opacity;
+            cursor: pointer;
+        }
+
+        .carousel-3d-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.6s ease;
+        }
+
+        .carousel-3d-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.5);
+        }
+
+        .carousel-3d-card.active {
+            box-shadow: 0 30px 80px rgba(56, 189, 248, 0.2), 0 0 0 1px rgba(56, 189, 248, 0.3);
+        }
+
+        .carousel-3d-card .card-3d-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 50%, transparent 100%);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .carousel-3d-card:hover .card-3d-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-3d-meta {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(148, 163, 184, 0.8);
+            margin-bottom: 0.5rem;
+            transform: translateY(8px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
+        }
+
+        .carousel-3d-card:hover .card-3d-meta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-3d-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #fff;
+            line-height: 1.3;
+            transform: translateY(8px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+        }
+
+        .carousel-3d-card:hover .card-3d-title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-3d-specs {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(56, 189, 248, 0.9);
+            margin-top: 0.6rem;
+            transform: translateY(8px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
+        }
+
+        .carousel-3d-card:hover .card-3d-specs {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card-3d-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(56,189,248,0.4), rgba(139,92,246,0.4), rgba(56,189,248,0.4));
+            background-size: 200% 200%;
+            opacity: 0;
+            filter: blur(12px);
+            z-index: -1;
+            transition: opacity 0.5s ease;
+            animation: glowShift 3s ease infinite;
+        }
+
+        .carousel-3d-card:hover .card-3d-glow {
+            opacity: 0.6;
+        }
+
+        @keyframes glowShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .carousel-3d-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 20;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-3d-nav:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-3d-nav.prev { left: 40px; }
+        .carousel-3d-nav.next { right: 40px; }
+
+        .carousel-3d-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .carousel-3d-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+        }
+
+        .carousel-3d-dot.active {
+            background: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+    <!-- Immersive Background System -->
+    <div id="space-container">
+        <canvas id="starfield"></canvas>
+        <div class="nebula" id="nebula-1"></div>
+        <div class="nebula" id="nebula-2" style="background: radial-gradient(circle at 30% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);"></div>
+        <div class="planet" id="planet-1" style="width: 300px; height: 300px; background: linear-gradient(135deg, #1e293b, #0f172a); top: 20%; right: -150px;"></div>
+        <div class="planet" id="planet-2" style="width: 150px; height: 150px; background: linear-gradient(135deg, #334155, #1e293b); bottom: 10%; left: -75px;"></div>
+    </div>
+
+    <!-- Shooting Star Cursor -->
+    <div id="cursor-wrapper">
+        <div id="cursor" class="cursor-part"></div>
+    </div>
+
+    <!-- Persistent Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-background/20 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-4 sm:px-6 lg:px-12 h-16 md:h-20 translate-y-[-100%]" id="navbar">
+        <div class="flex items-center gap-4">
+            <a href="#hero" class="text-sm md:text-lg font-light tracking-[0.3em] md:tracking-[0.5em] text-white uppercase font-display">CELESTIAL</a>
+        </div>
+        <div class="hidden md:flex gap-12 items-center">
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#portfolio">Constellations</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#narrative">Deep Space</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#archive">Archive</a>
+            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#contact">Contact</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="mobile-menu-btn material-symbols-outlined text-white" id="mobile-menu-btn" aria-label="Menu">menu</button>
+            <span class="material-symbols-outlined text-white hidden md:block cursor-pointer hover:text-accent transition-colors">star</span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+        <button class="absolute top-5 right-4 mobile-menu-btn material-symbols-outlined text-white" id="mobile-menu-close" aria-label="Close">close</button>
+        <a href="#portfolio" class="mobile-nav-link">Constellations</a>
+        <a href="#narrative" class="mobile-nav-link">Deep Space</a>
+        <a href="#archive" class="mobile-nav-link">Archive</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <main class="w-full relative z-10">
+        <!-- HERO -->
+        <section id="hero" style="display:grid;place-items:center">
+            <div class="absolute inset-0 z-0 scale-110" id="hero-img-container">
+                <img class="w-full h-full object-cover opacity-40 grayscale" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=2070"/>
+            </div>
+            <div class="relative z-10 text-center px-gutter" style="margin:0 auto;max-width:1440px;width:100%">
+                <span class="inline-block font-body text-[10px] tracking-[0.8em] uppercase text-accent mb-4 md:mb-8 opacity-0" id="hero-tag">Entering the Void</span>
+                <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white mb-6 md:mb-stack-lg italic reveal-text leading-tight px-2" id="hero-title">Beyond the Edge.</h1>
+                <p class="font-body text-base md:text-lg text-secondary max-w-xl md:max-w-2xl mx-auto opacity-0 translate-y-8 px-4" id="hero-subtitle">
+                    A cinematic journey through the light of distant suns. Scroll to descend into the deep.
+                </p>
+            </div>
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+                <span class="material-symbols-outlined text-white text-3xl">expand_more</span>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO -->
+        <section id="portfolio">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <header class="mb-16 md:mb-32 flex flex-col items-center text-center gap-6 md:gap-8">
+                    <div class="max-w-3xl">
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation I</span>
+                        <h2 class="font-display text-6xl md:text-8xl text-white italic scroll-reveal">The Constellations.</h2>
+                    </div>
+                    <p class="text-secondary text-lg max-w-xl scroll-reveal">Systematic studies of Quadrants Alpha through Delta. Capturing the geometric truth of the night sky.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-40">
+                    <div class="group scroll-reveal">
+                        <div class="aspect-[16/11] reveal-img-container mb-8 border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1532978341174-6228f0cb5347?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/ursa01/1200/825'"/>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <h3 class="font-display text-3xl text-white italic">Ursa Minor</h3>
+                            <span class="text-[9px] text-white/30 tracking-widest uppercase">EXP 01 // 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="group md:mt-40 scroll-reveal">
+                        <div class="aspect-[16/11] reveal-img-container mb-8 border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=2071"/>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <h3 class="font-display text-3xl text-white italic">Cassiopeia</h3>
+                            <span class="text-[9px] text-white/30 tracking-widest uppercase">EXP 04 // 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NARRATIVE -->
+        <section id="narrative" class="bg-surface/10 backdrop-blur-3xl overflow-hidden">
+            <div class="w-full">
+                <div class="px-4 sm:px-6 lg:px-12 xl:px-20 mb-12 md:mb-20 max-w-[1440px] mx-auto">
+                    <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] block mb-4 scroll-reveal">Observation II</span>
+                    <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-white italic scroll-reveal">Deep Space Chronicles.</h2>
+                </div>
+
+                <div class="flex gap-8 md:gap-20 px-4 sm:px-6 lg:px-12 xl:px-20" id="timeline-container">
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron01/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">The Orion Cradle</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">1,344 LY</span>
+                        </div>
+                    </div>
+
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron02/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">Andromeda's Reach</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">2.5M LY</span>
+                        </div>
+                    </div>
+
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron03/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">Void Horizon</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">4.2B LY</span>
+                        </div>
+                    </div>
+
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1454789548728-85d2696cfbaf?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron04/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">Solar Storms</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">0.00016 LY</span>
+                        </div>
+                    </div>
+
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron05/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">ISS Transit</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">254 MI</span>
+                        </div>
+                    </div>
+
+                    <div class="group timeline-item">
+                        <div class="mb-10 aspect-[16/9] reveal-img-container border border-white/5 rounded-sm">
+                            <img class="w-full h-full object-cover reveal-img" src="https://images.unsplash.com/photo-1419242902214-272b3f49ee23?q=80&w=1200&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/chron06/1200/675'"/>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-display text-4xl text-white italic">Star Trails</h3>
+                            <span class="text-[9px] text-accent font-body tracking-[0.3em]">8 HR EXP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ARCHIVE -->
+        <section id="archive">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <header class="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation III</span>
+                        <h2 class="font-display text-6xl text-white italic scroll-reveal">The Archive.</h2>
+                    </div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal">Technical Index</div>
+                </header>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space01/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Deep Field</span>
+                            <h3 class="archive-title">Stellar Nursery</h3>
+                            <span class="archive-specs">f/2.8 · ISO 3200 · 14mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space02/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Milky Way</span>
+                            <h3 class="archive-title">Galactic Core</h3>
+                            <span class="archive-specs">f/1.4 · ISO 6400 · 24mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space03/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Long Exposure</span>
+                            <h3 class="archive-title">Void Observation</h3>
+                            <span class="archive-specs">f/4 · ISO 800 · 50mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space04/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Spectral</span>
+                            <h3 class="archive-title">Nebula Front</h3>
+                            <span class="archive-specs">f/2.8 · ISO 1600 · 85mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space05/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">ISS Transit</span>
+                            <h3 class="archive-title">Orbital Path</h3>
+                            <span class="archive-specs">f/8 · ISO 200 · 600mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space06/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Earthrise</span>
+                            <h3 class="archive-title">Pale Blue Dot</h3>
+                            <span class="archive-specs">f/5.6 · ISO 400 · 35mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1419242902214-272b3f49ee23?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space07/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Andromeda</span>
+                            <h3 class="archive-title">Spiral Dynamics</h3>
+                            <span class="archive-specs">f/2.8 · ISO 3200 · 200mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space08/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Starfield</span>
+                            <h3 class="archive-title">Ancient Light</h3>
+                            <span class="archive-specs">f/1.8 · ISO 6400 · 20mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1506318137071-a8bcbf7d943d?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space09/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Ionosphere</span>
+                            <h3 class="archive-title">Aurora Borealis</h3>
+                            <span class="archive-specs">f/2.8 · ISO 1600 · 14mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1543722530-1a2c857ca1d7?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space10/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Apollo</span>
+                            <h3 class="archive-title">Lunar Highlands</h3>
+                            <span class="archive-specs">f/11 · ISO 100 · 100mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space11/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Spacewalk</span>
+                            <h3 class="archive-title">EVA Sequence</h3>
+                            <span class="archive-specs">f/4 · ISO 800 · 70mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                    <div class="aspect-square reveal-img-container archive-card group scroll-reveal">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 reveal-img" src="https://images.unsplash.com/photo-1454789548728-85d2696cfbaf?q=80&w=800&auto=format&fit=crop" loading="lazy" onload="this.classList.add('loaded');this.setAttribute('data-loaded','true')" onerror="this.src='https://picsum.photos/seed/space12/800/800'"/>
+                        <div class="archive-overlay">
+                            <span class="archive-meta">Infrared</span>
+                            <h3 class="archive-title">Cosmic Dust</h3>
+                            <span class="archive-specs">f/2.8 · ISO 12800 · 300mm</span>
+                        </div>
+                        <div class="archive-accent-line"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OBSERVATION IV -->
+        <section id="observation-iv" class="overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <header class="mb-10 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                    <div>
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-4 block scroll-reveal">Observation IV</span>
+                        <h2 class="font-display text-6xl text-white italic scroll-reveal">Orbital Gallery.</h2>
+                    </div>
+                    <div class="text-[9px] tracking-widest uppercase text-white/20 scroll-reveal">3D Index</div>
+                </header>
+            </div>
+            <div class="carousel-3d-container" id="carousel-3d">
+                <div class="carousel-3d-track" id="carousel-3d-track">
+                    <div class="carousel-3d-card" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d01/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Nebula</span>
+                            <h3 class="card-3d-title">Cosmic Cradle</h3>
+                            <span class="card-3d-specs">f/2.8 · ISO 3200 · 14mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d02/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Deep Field</span>
+                            <h3 class="card-3d-title">Andromeda's Edge</h3>
+                            <span class="card-3d-specs">f/1.4 · ISO 6400 · 24mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d03/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Transit</span>
+                            <h3 class="card-3d-title">Orbital Pass</h3>
+                            <span class="card-3d-specs">f/8 · ISO 200 · 600mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1506318137071-a8bcbf7d943d?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d04/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Aurora</span>
+                            <h3 class="card-3d-title">Polar Radiance</h3>
+                            <span class="card-3d-specs">f/2.8 · ISO 1600 · 14mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d05/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Earthrise</span>
+                            <h3 class="card-3d-title">Pale Blue Dot</h3>
+                            <span class="card-3d-specs">f/5.6 · ISO 400 · 35mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1419242902214-272b3f49ee23?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d06/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Starfield</span>
+                            <h3 class="card-3d-title">Ancient Light</h3>
+                            <span class="card-3d-specs">f/1.8 · ISO 6400 · 20mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d07/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Milky Way</span>
+                            <h3 class="card-3d-title">Galactic Core</h3>
+                            <span class="card-3d-specs">f/2.8 · ISO 3200 · 200mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="7">
+                        <img src="https://images.unsplash.com/photo-1543722530-1a2c857ca1d7?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d08/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Apollo</span>
+                            <h3 class="card-3d-title">Lunar Highlands</h3>
+                            <span class="card-3d-specs">f/11 · ISO 100 · 100mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="8">
+                        <img src="https://images.unsplash.com/photo-1516339901601-2e1b8b3e4c7d?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d09/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Spacewalk</span>
+                            <h3 class="card-3d-title">EVA Sequence</h3>
+                            <span class="card-3d-specs">f/4 · ISO 800 · 70mm</span>
+                        </div>
+                    </div>
+                    <div class="carousel-3d-card" data-index="9">
+                        <img src="https://images.unsplash.com/photo-1454789548728-85d2696cfbaf?q=80&w=640&auto=format&fit=crop" loading="lazy" onload="this.style.opacity=1" onerror="this.src='https://picsum.photos/seed/3d10/640/840'" style="opacity:0;transition:opacity 1s"/>
+                        <div class="card-3d-glow"></div>
+                        <div class="card-3d-overlay">
+                            <span class="card-3d-meta">Infrared</span>
+                            <h3 class="card-3d-title">Cosmic Dust</h3>
+                            <span class="card-3d-specs">f/2.8 · ISO 12800 · 300mm</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-3d-nav prev material-symbols-outlined" id="carousel-3d-prev">chevron_left</button>
+                <button class="carousel-3d-nav next material-symbols-outlined" id="carousel-3d-next">chevron_right</button>
+                <div class="carousel-3d-indicator" id="carousel-3d-dots"></div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
+                <div class="grid grid-cols-1 contact-grid items-center w-full">
+                    <div class="w-full">
+                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-6 md:mb-8 block scroll-reveal">Connection</span>
+                        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8cqw,6rem)] text-white mb-8 md:mb-10 italic scroll-reveal leading-none">Join the expedition.</h2>
+                        <p class="font-body text-lg text-secondary mb-12 scroll-reveal max-w-md">Documenting the infinite requires many eyes. Send a signal to begin a collaboration.</p>
+                    </div>
+                    <form class="flex flex-col gap-10 bg-surface/20 p-8 md:p-16 backdrop-blur-3xl border border-white/5 rounded-sm scroll-reveal w-full" id="contact-form">
+                        <div class="space-y-2">
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Callsign</label>
+                            <input required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="NAME / IDENTIFIER" type="text"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Frequency</label>
+                            <input required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="EMAIL ADDRESS" type="email"/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40">Transmission</label>
+                            <textarea required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 resize-none uppercase" placeholder="MESSAGE DATA" rows="4"></textarea>
+                        </div>
+                        <button class="w-full py-6 bg-white text-background text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-accent hover:text-white transition-all duration-500 magnetic active:scale-95" type="submit">
+                            Initiate Launch
+                        </button>
+                        <p id="form-status" class="text-[9px] tracking-[0.4em] text-accent text-center hidden">Transmission Received. Stand by.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-deep-void border-t border-white/5 py-20 relative z-10">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+            <div class="text-[9px] tracking-[0.5em] text-white/30 uppercase">© 2024 CELESTIAL ARCHIVE // DATA LOGGED</div>
+            <div class="flex gap-12">
+                <a href="#hero" class="text-[9px] tracking-widest uppercase text-white/40 hover:text-white transition-colors magnetic">Return to Threshold</a>
+            </div>
+            <div class="flex gap-8">
+                <span class="material-symbols-outlined text-white/20 hover:text-accent transition-colors magnetic">public</span>
+                <span class="material-symbols-outlined text-white/20 hover:text-accent transition-colors magnetic">rocket_launch</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <script>
+        // --- 1. Immersive Deep Space Engine ---
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let speedMultiplier = 1;
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Star {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.baseSpeed = Math.random() * 0.05 + 0.02;
+                this.opacity = Math.random();
+            }
+            update() {
+                this.y -= this.baseSpeed * speedMultiplier;
+                if (this.y < 0) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < 300; i++) stars.push(new Star());
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => { star.update(); star.draw(); });
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        initStars();
+        animateStars();
+
+        // --- 2. Smooth Scroll & Anchor Fix ---
+        const lenis = new Lenis({ duration: 1.5 });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                lenis.scrollTo(targetId, {
+                    offset: -80,
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            });
+        });
+
+        // --- 3. Shooting Star Cursor Engine ---
+        const cursorHead = document.getElementById('cursor');
+        const wrapper = document.getElementById('cursor-wrapper');
+        const trailCount = 8;
+        const trails = [];
+
+        // Inyectar partes de la cola
+        for (let i = 0; i < trailCount; i++) {
+            const div = document.createElement('div');
+            div.className = 'cursor-part trail';
+            wrapper.appendChild(div);
+            trails.push({
+                el: div,
+                x: gsap.quickTo(div, "x", { duration: 0.1 + (i * 0.04), ease: "power2.out" }),
+                y: gsap.quickTo(div, "y", { duration: 0.1 + (i * 0.04), ease: "power2.out" })
+            });
+        }
+
+        // Movimiento ultra-rápido de la cabeza (el sol)
+        const headX = gsap.quickTo(cursorHead, "x", { duration: 0.02, ease: "none" });
+        const headY = gsap.quickTo(cursorHead, "y", { duration: 0.02, ease: "none" });
+
+        window.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            headX(x);
+            headY(y);
+            trails.forEach((t, i) => {
+                t.x(x);
+                t.y(y);
+                gsap.set(t.el, { scale: 1 - (i / trailCount) });
+            });
+        });
+
+        document.querySelectorAll('a, button, .magnetic, .group').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+        });
+
+        // --- 4. Deep Space Progression ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        ScrollTrigger.create({
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.5,
+            onUpdate: (self) => {
+                const p = self.progress;
+                speedMultiplier = 1 + p * 35;
+                const voidIntensity = Math.max(0, 1 - p * 1.5);
+                gsap.set("#space-container", {
+                    background: p > 0.8 ? "#000" : `radial-gradient(circle at center, rgba(15, 23, 42, ${voidIntensity}) 0%, #000 100%)`
+                });
+                if (p > 0.2) gsap.to("#nebula-1", { opacity: (p - 0.2) * 0.8, duration: 2 });
+                if (p > 0.5) gsap.to("#nebula-2", { opacity: (p - 0.5) * 0.8, duration: 2 });
+                gsap.to("#planet-1", { x: -p * 500, opacity: p > 0.1 ? 0.4 : 0, duration: 1 });
+                gsap.to("#planet-2", { x: p * 400, opacity: p > 0.4 ? 0.3 : 0, duration: 1 });
+            }
+        });
+
+        // --- 5. Optimized Image Reveal ---
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('img');
+                    if (img) img.classList.add('loaded');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal-img-container').forEach(container => {
+            imageObserver.observe(container);
+        });
+
+        // --- 6. Component Animations ---
+        const heroTl = gsap.timeline();
+        heroTl.to('#navbar', { y: 0, duration: 1.5, ease: "power4.out", delay: 0.5 })
+              .to('#hero-tag', { opacity: 1, duration: 1 }, "-=0.8")
+              .to('#hero-title', { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 2 }, "-=1")
+              .to('#hero-subtitle', { opacity: 0.7, y: 0, duration: 1.2 }, "-=1");
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            gsap.from(el, {
+                opacity: 0, y: 60, duration: 1.5, ease: "power3.out",
+                scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" }
+            });
+        });
+
+        // --- Deep Space Carousel: Infinite Loop Auto-scroll + Drag ---
+        const timeline = document.getElementById('timeline-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let autoScrollId;
+        let autoScrollSpeed = 0.6;
+        let isPaused = false;
+        let originalWidth = 0;
+
+        if (timeline) {
+            // Clone all items for seamless infinite loop
+            const items = timeline.querySelectorAll('.timeline-item');
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                timeline.appendChild(clone);
+            });
+            originalWidth = timeline.scrollWidth / 2;
+
+            function stepAutoScroll() {
+                if (!isPaused && !isDown && timeline) {
+                    timeline.scrollLeft += autoScrollSpeed;
+                    if (timeline.scrollLeft >= originalWidth) {
+                        timeline.scrollLeft -= originalWidth;
+                    }
+                }
+                autoScrollId = requestAnimationFrame(stepAutoScroll);
+            }
+
+            function wrapScroll() {
+                if (!timeline) return;
+                if (timeline.scrollLeft >= originalWidth) {
+                    timeline.scrollLeft -= originalWidth;
+                } else if (timeline.scrollLeft < 0) {
+                    timeline.scrollLeft += originalWidth;
+                }
+            }
+
+            timeline.addEventListener('mousedown', (e) => {
+                isDown = true;
+                timeline.classList.add('dragging');
+                startX = e.pageX - timeline.offsetLeft;
+                scrollLeft = timeline.scrollLeft;
+                isPaused = true;
+            });
+
+            timeline.addEventListener('mouseleave', () => {
+                isDown = false;
+                timeline.classList.remove('dragging');
+                isPaused = false;
+            });
+
+            timeline.addEventListener('mouseup', () => {
+                isDown = false;
+                timeline.classList.remove('dragging');
+                wrapScroll();
+                setTimeout(() => { isPaused = false; }, 600);
+            });
+
+            timeline.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - timeline.offsetLeft;
+                const walk = (x - startX) * 1.8;
+                timeline.scrollLeft = scrollLeft - walk;
+            });
+
+            timeline.addEventListener('mouseenter', () => { isPaused = true; });
+            timeline.addEventListener('mouseleave', () => {
+                if (!isDown) isPaused = false;
+            });
+
+            stepAutoScroll();
+        }
+
+        // --- 3D Carousel ---
+        (function() {
+            const track = document.getElementById('carousel-3d-track');
+            const cards = track ? track.querySelectorAll('.carousel-3d-card') : [];
+            const dotsContainer = document.getElementById('carousel-3d-dots');
+            const prevBtn = document.getElementById('carousel-3d-prev');
+            const nextBtn = document.getElementById('carousel-3d-next');
+            const container = document.getElementById('carousel-3d');
+            if (!track || cards.length === 0) return;
+
+            const total = cards.length;
+            const angleStep = 360 / total;
+            // Smaller radius on mobile
+            const isMobile = window.innerWidth < 768;
+            const radius = isMobile ? 280 : 580;
+            let currentAngle = 0;
+            let autoRotateId;
+            let isPaused = false;
+            let isDragging = false;
+            let startX;
+            let dragStartAngle;
+
+            function getActiveIndex() {
+                return Math.round((-currentAngle % 360 + 360) % 360 / angleStep) % total;
+            }
+
+            function positionCards() {
+                cards.forEach((card, i) => {
+                    const angle = angleStep * i;
+                    // Standard CSS 3D carousel: rotate to angle, then push out along Z
+                    card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+
+                    // Depth-based opacity for smooth fading on sides/back
+                    const worldRot = ((angle + currentAngle) % 360 + 360) % 360;
+                    const deviation = Math.min(worldRot, 360 - worldRot);
+                    let opacity = 1;
+                    if (deviation > 60) {
+                        opacity = Math.max(0, 1 - (deviation - 60) / 60);
+                    }
+                    card.style.opacity = opacity.toFixed(2);
+
+                    // Active glow on front-most card
+                    const activeIdx = getActiveIndex();
+                    if (i === activeIdx) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
+
+            function updateDots() {
+                if (!dotsContainer) return;
+                const dots = dotsContainer.querySelectorAll('.carousel-3d-dot');
+                const activeIdx = getActiveIndex();
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIdx));
+            }
+
+            function rotateTo(index) {
+                const target = -index * angleStep;
+                const diff = target - currentAngle;
+                // Choose shortest path
+                let shortest = diff;
+                while (shortest <= -180) shortest += 360;
+                while (shortest > 180) shortest -= 360;
+                currentAngle += shortest;
+                track.style.transform = `rotateY(${currentAngle}deg)`;
+                positionCards();
+                updateDots();
+            }
+
+            function rotateBy(delta) {
+                currentAngle += delta * angleStep;
+                track.style.transform = `rotateY(${currentAngle}deg)`;
+                positionCards();
+                updateDots();
+            }
+
+            // Build dots
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-3d-dot';
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', () => rotateTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            prevBtn?.addEventListener('click', () => rotateBy(1));
+            nextBtn?.addEventListener('click', () => rotateBy(-1));
+
+            // Auto-rotate
+            function stepAutoRotate() {
+                if (!isPaused && !isDragging) {
+                    currentAngle -= 0.12;
+                    track.style.transform = `rotateY(${currentAngle}deg)`;
+                    positionCards();
+                    updateDots();
+                }
+                autoRotateId = requestAnimationFrame(stepAutoRotate);
+            }
+
+            container?.addEventListener('mouseenter', () => { isPaused = true; });
+            container?.addEventListener('mouseleave', () => {
+                isPaused = false;
+                isDragging = false;
+            });
+
+            // Drag support (mouse)
+            container?.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                dragStartAngle = currentAngle;
+            });
+            window.addEventListener('mouseup', () => { isDragging = false; });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - startX;
+                currentAngle = dragStartAngle + dx * 0.35;
+                track.style.transform = `rotateY(${currentAngle}deg)`;
+                positionCards();
+                updateDots();
+            });
+
+            // Touch support for mobile
+            let touchStartX3D = 0;
+            let touchStartAngle = 0;
+            container?.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                touchStartX3D = e.touches[0].clientX;
+                touchStartAngle = currentAngle;
+                isPaused = true;
+            }, { passive: true });
+            container?.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const touchX = e.touches[0].clientX;
+                const dx = touchX - touchStartX3D;
+                currentAngle = touchStartAngle + dx * 0.5;
+                track.style.transform = `rotateY(${currentAngle}deg)`;
+                positionCards();
+                updateDots();
+            }, { passive: true });
+            container?.addEventListener('touchend', () => {
+                isDragging = false;
+                setTimeout(() => { isPaused = false; }, 600);
+            });
+
+            positionCards();
+            updateDots();
+            stepAutoRotate();
+        })();
+
+        // --- Mobile Menu ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileMenu?.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu?.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn?.addEventListener('click', openMobileMenu);
+        mobileMenuClose?.addEventListener('click', closeMobileMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+                const targetId = link.getAttribute('href');
+                lenis?.scrollTo(targetId, { offset: -80, duration: 1.5 });
+            });
+        });
+
+        // --- Touch Events for Deep Space Carousel ---
+        const timelineContainer = document.getElementById('timeline-container');
+        if (timelineContainer) {
+            let touchStartX = 0;
+            let touchScrollLeft = 0;
+
+            timelineContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].pageX;
+                touchScrollLeft = timelineContainer.scrollLeft;
+            }, { passive: true });
+
+            timelineContainer.addEventListener('touchmove', (e) => {
+                const touchX = e.touches[0].pageX;
+                const walk = (touchStartX - touchX) * 1.5;
+                timelineContainer.scrollLeft = touchScrollLeft + walk;
+            }, { passive: true });
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const status = document.getElementById('form-status');
+            btn.innerHTML = "LAUNCHING...";
+            setTimeout(() => {
+                btn.style.display = 'none';
+                status.classList.remove('hidden');
+                gsap.from(status, { opacity: 0, y: 10, duration: 0.5 });
+            }, 1500);
+        });
+
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+                gsap.to(el, { x, y, duration: 0.4 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+    </script>
+</body>
+</html>
