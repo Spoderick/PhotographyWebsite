@@ -1568,7 +1568,6 @@
             <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#portfolio" data-i18n="nav_featured">Featured Work</a>
             <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#narrative" data-i18n="nav_storytelling">Storytelling</a>
             <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#archive" data-i18n="nav_gallery">Gallery Modes</a>
-            <a class="nav-link tracking-[0.2em] uppercase text-[10px] text-white/50 hover:text-white transition-colors" href="#contact" data-i18n="nav_contact">Contact</a>
         </div>
         <div class="flex items-center gap-4">
             <div class="lang-toggle hidden md:inline-flex" aria-label="Language switcher">
@@ -1586,7 +1585,6 @@
         <a href="#portfolio" class="mobile-nav-link" data-i18n="nav_featured">Featured Work</a>
         <a href="#narrative" class="mobile-nav-link" data-i18n="nav_storytelling">Storytelling</a>
         <a href="#archive" class="mobile-nav-link" data-i18n="nav_gallery">Gallery Modes</a>
-        <a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a>
         <div class="mobile-lang-wrap">
             <div class="lang-toggle" aria-label="Language switcher mobile">
                 <button class="lang-toggle-btn active" id="lang-en-mobile" type="button">EN</button>
@@ -2148,36 +2146,6 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 w-full">
-                <div class="grid grid-cols-1 contact-grid items-center w-full">
-                    <div class="w-full">
-                        <span class="font-body text-[10px] text-accent uppercase tracking-[0.4em] mb-6 md:mb-8 block scroll-reveal" data-i18n="contact_label">Let's Build Yours</span>
-                        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[clamp(3rem,8cqw,6rem)] text-white mb-8 md:mb-10 italic scroll-reveal leading-none" data-i18n="contact_title">Book a photographer portfolio.</h2>
-                        <p class="font-body text-lg text-secondary mb-12 scroll-reveal max-w-md" data-i18n="contact_desc">Custom websites for photographers who want a stronger brand, better presentation, faster mobile performance, and more inquiries from the right clients.</p>
-                    </div>
-                    <form class="flex flex-col gap-10 bg-surface/20 p-8 md:p-16 backdrop-blur-3xl border border-white/5 rounded-sm scroll-reveal w-full" id="contact-form">
-                        <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_name_label">Name</label>
-                            <input id="contact-name" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="YOUR NAME" type="text" data-i18n-placeholder="form_name_placeholder"/>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_email_label">Email</label>
-                            <input id="contact-email" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 uppercase" placeholder="EMAIL ADDRESS" type="email" data-i18n-placeholder="form_email_placeholder"/>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[9px] tracking-[0.3em] uppercase text-white/40" data-i18n="form_project_label">Project Type</label>
-                            <textarea id="contact-project" required class="w-full bg-transparent border-0 border-b border-white/10 py-4 text-sm text-white focus:ring-0 focus:border-accent transition-all placeholder:text-white/5 resize-none uppercase" placeholder="WEDDINGS, FASHION, TRAVEL, PORTRAITS, OR COMMERCIAL" rows="4" data-i18n-placeholder="form_project_placeholder"></textarea>
-                        </div>
-                        <button class="w-full py-6 bg-white text-background text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-accent hover:text-white transition-all duration-500 magnetic active:scale-95" type="submit" id="contact-submit" data-i18n="form_submit">
-                            Request My Portfolio
-                        </button>
-                        <p id="form-status" class="text-[9px] tracking-[0.4em] text-accent text-center hidden" data-i18n="form_status">Inquiry received. I'll be in touch soon.</p>
-                    </form>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="bg-deep-void border-t border-white/5 py-20 relative z-10">
@@ -2914,18 +2882,6 @@
                 timelineContainer.scrollLeft = touchScrollLeft + walk;
             }, { passive: true });
         }
-
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const status = document.getElementById('form-status');
-            btn.textContent = languageConfig[currentLanguage].form_submit_sending;
-            setTimeout(() => {
-                btn.style.display = 'none';
-                status.classList.remove('hidden');
-                gsap.from(status, { opacity: 0, y: 10, duration: 0.5 });
-            }, 1500);
-        });
 
         const proofCards = document.querySelectorAll('.proof-card');
         const selectProofCard = (activeCard) => {
